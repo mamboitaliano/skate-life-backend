@@ -1,0 +1,48 @@
+compiles your html, breaks it down and lets you put it on your phone
+
+may need an ios developer key in order to use it on iphones
+
+under the hood, it acts as your phone's native browser except that the browser bar is kind of sliced off at the top
+
+it's like a 'pseudo-native-app'
+
+there are a couple of files that we have to include to let phonegap know about the specifics of
+
+aheinen - checkout repo and wheretoclient repo
+
+tmp file needs to be included
+there's a certain structure, format, and script tags that need to be included so check out the html page
+
+Alex's group originally used jquery mobile and phonegap, but his group opinion was that jquery did give some nice features but was a pain to work with on the css front
+--would have to use IMPORTANT to override some of the css
+--jquery ui doesn't work well with jquery mobile, nor do any of the jquery applications
+
+-see what else you can use to work with the front end
+
+we could bulid jquery mobile in one html file where each button goes to a different id tag..?
+
+-alex's project approach was a single page app that had a blank div in the html and used ajax to replace the contents of the div
+
+-make use of the chrome dev tools to see how things are working mobile
+-if things don't work, try closing chrome dev tools 
+-do all of the designing on the phone
+-look into responsive design for phones
+
+for demo - consider recording, demo in devtools
+-or screencast to the project from your phone
+Chuck 
+
+-separate backend and frontend into different repos
+-host the rails app on heroku
+-phonegap hosts our app
+-have a global url in our javascripts
+put localhost3000 in our javascript 
+-when we switch to heroku, just change 1 link.
+-figure out your oAuth right away
+handle the oauth in our frontend
+-facebook has good documentation for their javascript sdk
+--request goes to javascript and back to the app
+
+
+try to get the rails app on heroku asap
+try to get a hello world app on phonegap rightaway
