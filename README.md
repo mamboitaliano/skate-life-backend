@@ -24,18 +24,11 @@ Link for Back-End repo here.
 -- AND THEN GET A TEAMMATE TO VALIDATE AND MERGE ASAP
 
 ## Rails API routes
-# skateparks
 - GET   /api/skateparks
 - GET   /api/skateparks/:id
-
-# users
 - GET   /api/users
 - POST  /api/users
-
-# user
 - GET /api/users/:id
 - DELETE /api/users/:id
-## return user's favorited skateparks
 - GET /api/users/:id/favorites
-## favorite a particular skatepark
 - POST /api/users/:user_id/favorites/:skatepark_id
