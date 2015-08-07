@@ -12,5 +12,4 @@ Rails.application.routes.draw do
     post '/users/:user_id/favorites/:skatepark_id' => 'favorites#create'
 
   end
-
 end
