@@ -117,6 +117,3 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-api
   rails_12factor
-
-BUNDLED WITH
-   1.10.6
