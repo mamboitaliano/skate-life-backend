@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     resources :skateparks, only: [:index, :show]
     resources :users, except: [:update, :edit, :show]
 
-    post 'favorites/:skatepark_id/:user_id' => 'favorites#create'
+    # create a favorite, maybe make this more restful
+    post '/favorites/:skatepark_id/:user_id' => 'favorites#create'
+
+    get '/users/:id/favorites/' => 'users#favorites'
   end
   
 end
