@@ -27,9 +27,11 @@ Link for Back-End repo here.
 # skateparks
 - GET   /api/skateparks
 - GET   /api/skateparks/:id
+
 # users
 - GET   /api/users
 - POST  /api/users
+
 # user
 - GET /api/users/:id
 - DELETE /api/users/:id
