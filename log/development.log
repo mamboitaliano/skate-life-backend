@@ -869,3 +869,11 @@ Started GET "/api/skateparks/" for ::1 at 2015-08-07 10:20:48 -0700
 Processing by SkateparksController#index as */*
   [1m[36mSkatepark Load (1.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
 Completed 200 OK in 20ms (Views: 11.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/skateparks/1" for ::1 at 2015-08-07 10:28:58 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SkateparksController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mSkatepark Load (0.8ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 51ms (Views: 2.9ms | ActiveRecord: 6.2ms)

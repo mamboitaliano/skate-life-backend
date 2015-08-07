@@ -5,5 +5,10 @@ class SkateparksController < ApplicationController
     render json: @skateparks
   end
 
+  def show
+    @skatepark = Skatepark.find(params[:id])
+    render json: @skatepark
+  end
+
 
 end
