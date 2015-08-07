@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
 
   def create
-    @favorite = Favorite.new(
+    @favorite = Favorite.create(
       skatepark_id: params[:skatepark_id],
       user_id: params[:user_id])
 

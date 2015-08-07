@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    render json: @user.skateparks
+  end
+
 
 
 end

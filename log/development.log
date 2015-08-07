@@ -1131,3 +1131,202 @@ Processing by SkateparksController#show as */*
   Parameters: {"id"=>"1"}
   [1m[36mSkatepark Load (0.6ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 1]]
 Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 11:29:33 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mSkatepark Load (9.0ms)[0m  SELECT "skateparks".* FROM "skateparks" WHERE "skateparks"."user_id" IS NULL
+PG::UndefinedColumn: ERROR:  column skateparks.user_id does not exist
+LINE 1: SELECT "skateparks".* FROM "skateparks" WHERE "skateparks"."...
+                                                      ^
+: SELECT "skateparks".* FROM "skateparks" WHERE "skateparks"."user_id" IS NULL
+Completed 500 Internal Server Error in 40ms
+
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column skateparks.user_id does not exist
+LINE 1: SELECT "skateparks".* FROM "skateparks" WHERE "skateparks"."...
+                                                      ^
+: SELECT "skateparks".* FROM "skateparks" WHERE "skateparks"."user_id" IS NULL):
+  app/controllers/users_controller.rb:29:in `favorites'
+
+
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.7ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.9ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.5ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (84.6ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 11:29:54 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 1ms
+
+NameError (uninitialized constant UsersController::Favorites):
+  app/controllers/users_controller.rb:28:in `favorites'
+
+
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.8ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.7ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (108.4ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 11:30:10 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mFavorite Load (3.3ms)[0m  [1mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" IS NULL[0m
+Completed 200 OK in 23ms (Views: 4.8ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 11:32:18 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.9ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 76ms (Views: 20.3ms | ActiveRecord: 7.8ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mSkatepark Load (0.4ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+  [1m[36mFavorite Load (0.3ms)[0m  [1mSELECT "favorites".* FROM "favorites"[0m
+
+
+Started POST "/api/favorites/1/1" for ::1 at 2015-08-07 12:40:39 -0700
+Processing by FavoritesController#create as */*
+  Parameters: {"skatepark_id"=>"1", "user_id"=>"1"}
+  [1m[35mSkatepark Load (1.4ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "skateparks" SET "fav_count" = $1, "updated_at" = $2 WHERE "skateparks"."id" = $3  [["fav_count", 2], ["updated_at", "2015-08-07 19:40:39.562912"], ["id", 1]]
+  [1m[36m (69.3ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 162ms (Views: 8.2ms | ActiveRecord: 87.4ms)
+
+
+Started POST "/api/users/1/favorites" for ::1 at 2015-08-07 12:40:48 -0700
+
+ActionController::RoutingError (No route matches [POST] "/api/users/1/favorites"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  puma (2.11.0) lib/puma/server.rb:507:in `handle_request'
+  puma (2.11.0) lib/puma/server.rb:375:in `process_client'
+  puma (2.11.0) lib/puma/server.rb:262:in `block in run'
+  puma (2.11.0) lib/puma/thread_pool.rb:104:in `call'
+  puma (2.11.0) lib/puma/thread_pool.rb:104:in `block in spawn_thread'
+
+
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.7ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (111.5ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 12:40:53 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 37ms (Views: 2.1ms | ActiveRecord: 11.5ms)
+
+
+Started POST "/api/favorites/1/1" for ::1 at 2015-08-07 12:42:06 -0700
+Processing by FavoritesController#create as */*
+  Parameters: {"skatepark_id"=>"1", "user_id"=>"1"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (4.6ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 1], ["user_id", 1], ["created_at", "2015-08-07 19:42:07.034421"], ["updated_at", "2015-08-07 19:42:07.034421"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mUPDATE "skateparks" SET "fav_count" = $1, "updated_at" = $2 WHERE "skateparks"."id" = $3[0m  [["fav_count", 3], ["updated_at", "2015-08-07 19:42:07.056981"], ["id", 1]]
+  [1m[35m (2.3ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 89ms (Views: 13.2ms | ActiveRecord: 12.1ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 12:42:19 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.4ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 24ms (Views: 2.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/users/1/favorites/2" for ::1 at 2015-08-07 12:43:43 -0700
+
+ActionController::RoutingError (No route matches [GET] "/api/users/1/favorites/2"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  puma (2.11.0) lib/puma/server.rb:507:in `handle_request'
+  puma (2.11.0) lib/puma/server.rb:375:in `process_client'
+  puma (2.11.0) lib/puma/server.rb:262:in `block in run'
+  puma (2.11.0) lib/puma/thread_pool.rb:104:in `call'
+  puma (2.11.0) lib/puma/thread_pool.rb:104:in `block in spawn_thread'
+
+
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.6ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.7ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (82.1ms)
+
+
+Started POST "/api/users/1/favorites/2" for ::1 at 2015-08-07 12:44:30 -0700
+Processing by FavoritesController#create as */*
+  Parameters: {"user_id"=>"1", "skatepark_id"=>"2"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 2], ["user_id", 1], ["created_at", "2015-08-07 19:44:30.103278"], ["updated_at", "2015-08-07 19:44:30.103278"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "skateparks" SET "fav_count" = $1, "updated_at" = $2 WHERE "skateparks"."id" = $3  [["fav_count", 1], ["updated_at", "2015-08-07 19:44:30.117033"], ["id", 2]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 47ms (Views: 4.6ms | ActiveRecord: 10.1ms)
+
+
+Started POST "/api/users/1/favorites/2" for ::1 at 2015-08-07 12:44:52 -0700
+Processing by FavoritesController#create as */*
+  Parameters: {"user_id"=>"1", "skatepark_id"=>"2"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 2], ["user_id", 1], ["created_at", "2015-08-07 19:44:52.284743"], ["updated_at", "2015-08-07 19:44:52.284743"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mSkatepark Load (0.3ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "skateparks" SET "fav_count" = $1, "updated_at" = $2 WHERE "skateparks"."id" = $3[0m  [["fav_count", 2], ["updated_at", "2015-08-07 19:44:52.288624"], ["id", 2]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/users/1/favorites" for ::1 at 2015-08-07 12:44:57 -0700
+Processing by UsersController#favorites as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 27ms (Views: 3.0ms | ActiveRecord: 2.6ms)
