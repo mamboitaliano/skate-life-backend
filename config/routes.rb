@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  match '*all', to: 'application#preflight', via: [:options]
 
   scope 'api' do
     resources :skateparks, only: [:index, :show]
@@ -11,5 +12,5 @@ Rails.application.routes.draw do
     post '/users/:user_id/favorites/:skatepark_id' => 'favorites#create'
 
   end
-  
+
 end
