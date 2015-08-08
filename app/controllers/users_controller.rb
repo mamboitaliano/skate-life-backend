@@ -15,7 +15,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user
+    # render json: @user
+    render json: {@user, @user.skateparks}
   end
 
   def destroy
@@ -24,10 +25,10 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
-  def favorites
-    @user = User.find(params[:id])
-    render json: @user.skateparks
-  end
+  # def favorites
+  #   @user = User.find(params[:id])
+  #   render json: @user.skateparks
+  # end
 
 
 
