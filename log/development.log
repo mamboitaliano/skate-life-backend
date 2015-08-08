@@ -1696,3 +1696,253 @@ ORDER BY c.conname
   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "a-town park"], ["address", "5493 traffic way atascadero ca 93422"], ["created_at", "2015-08-08 22:04:09.075894"], ["updated_at", "2015-08-08 22:04:09.075894"]]
   [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Tennyson"], ["created_at", "2015-08-08 22:08:20.846913"], ["updated_at", "2015-08-08 22:08:20.846913"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Cannery"], ["created_at", "2015-08-08 22:08:20.858740"], ["updated_at", "2015-08-08 22:08:20.858740"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Fremont"], ["created_at", "2015-08-08 22:08:20.867539"], ["updated_at", "2015-08-08 22:08:20.867539"]]
+  [1m[35m (5.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Millbrae"], ["created_at", "2015-08-08 22:08:20.875265"], ["updated_at", "2015-08-08 22:08:20.875265"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Soma"], ["created_at", "2015-08-08 22:08:20.878432"], ["updated_at", "2015-08-08 22:08:20.878432"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Harvey"], ["email", "Harvey@gmail.com"], ["created_at", "2015-08-08 22:08:20.887207"], ["updated_at", "2015-08-08 22:08:20.887207"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ian"], ["email", "Ian@gmail.com"], ["created_at", "2015-08-08 22:08:20.896003"], ["updated_at", "2015-08-08 22:08:20.896003"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Shabazz"], ["email", "Shabazz@gmail.com"], ["created_at", "2015-08-08 22:08:20.904774"], ["updated_at", "2015-08-08 22:08:20.904774"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Chris"], ["email", "Chris@gmail.com"], ["created_at", "2015-08-08 22:08:20.907537"], ["updated_at", "2015-08-08 22:08:20.907537"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 1], ["user_id", 1], ["created_at", "2015-08-08 22:08:20.917252"], ["updated_at", "2015-08-08 22:08:20.917252"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 2], ["user_id", 1], ["created_at", "2015-08-08 22:08:20.926066"], ["updated_at", "2015-08-08 22:08:20.926066"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 3], ["user_id", 1], ["created_at", "2015-08-08 22:08:20.934691"], ["updated_at", "2015-08-08 22:08:20.934691"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 1], ["user_id", 2], ["created_at", "2015-08-08 22:08:20.937269"], ["updated_at", "2015-08-08 22:08:20.937269"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 2], ["user_id", 2], ["created_at", "2015-08-08 22:08:20.939675"], ["updated_at", "2015-08-08 22:08:20.939675"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 3], ["user_id", 2], ["created_at", "2015-08-08 22:08:20.942085"], ["updated_at", "2015-08-08 22:08:20.942085"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 1], ["user_id", 3], ["created_at", "2015-08-08 22:08:20.943751"], ["updated_at", "2015-08-08 22:08:20.943751"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 2], ["user_id", 3], ["created_at", "2015-08-08 22:08:20.945358"], ["updated_at", "2015-08-08 22:08:20.945358"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 3], ["user_id", 3], ["created_at", "2015-08-08 22:08:20.947017"], ["updated_at", "2015-08-08 22:08:20.947017"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20150807025824)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (3.6ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807025824"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSkateparks (20150807030123)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.9ms)[0m  [1mCREATE TABLE "skateparks" ("id" serial primary key, "name" character varying, "address" character varying, "lat_long" character varying, "fav_count" integer DEFAULT 0, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807030123"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFavorites (20150807030335)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "favorites" ("id" serial primary key, "skatepark_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX  "index_favorites_on_skatepark_id" ON "favorites"  ("skatepark_id")
+  [1m[36m (1.0ms)[0m  [1mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807030335"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'favorites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'skateparks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Tennyson"], ["created_at", "2015-08-08 22:08:39.069499"], ["updated_at", "2015-08-08 22:08:39.069499"]]
+  [1m[36m (5.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Cannery"], ["created_at", "2015-08-08 22:08:39.077553"], ["updated_at", "2015-08-08 22:08:39.077553"]]
+  [1m[35m (5.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Fremont"], ["created_at", "2015-08-08 22:08:39.087484"], ["updated_at", "2015-08-08 22:08:39.087484"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Millbrae"], ["created_at", "2015-08-08 22:08:39.094108"], ["updated_at", "2015-08-08 22:08:39.094108"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Soma"], ["created_at", "2015-08-08 22:08:39.099988"], ["updated_at", "2015-08-08 22:08:39.099988"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Harvey"], ["email", "Harvey@gmail.com"], ["created_at", "2015-08-08 22:08:39.107389"], ["updated_at", "2015-08-08 22:08:39.107389"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Ian"], ["email", "Ian@gmail.com"], ["created_at", "2015-08-08 22:08:39.109541"], ["updated_at", "2015-08-08 22:08:39.109541"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Shabazz"], ["email", "Shabazz@gmail.com"], ["created_at", "2015-08-08 22:08:39.111197"], ["updated_at", "2015-08-08 22:08:39.111197"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Chris"], ["email", "Chris@gmail.com"], ["created_at", "2015-08-08 22:08:39.112806"], ["updated_at", "2015-08-08 22:08:39.112806"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 1], ["user_id", 1], ["created_at", "2015-08-08 22:08:39.120453"], ["updated_at", "2015-08-08 22:08:39.120453"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 2], ["user_id", 1], ["created_at", "2015-08-08 22:08:39.122740"], ["updated_at", "2015-08-08 22:08:39.122740"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 3], ["user_id", 1], ["created_at", "2015-08-08 22:08:39.124443"], ["updated_at", "2015-08-08 22:08:39.124443"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 1], ["user_id", 2], ["created_at", "2015-08-08 22:08:39.126533"], ["updated_at", "2015-08-08 22:08:39.126533"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 2], ["user_id", 2], ["created_at", "2015-08-08 22:08:39.128409"], ["updated_at", "2015-08-08 22:08:39.128409"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 3], ["user_id", 2], ["created_at", "2015-08-08 22:08:39.130077"], ["updated_at", "2015-08-08 22:08:39.130077"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 1], ["user_id", 3], ["created_at", "2015-08-08 22:08:39.131726"], ["updated_at", "2015-08-08 22:08:39.131726"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 2], ["user_id", 3], ["created_at", "2015-08-08 22:08:39.133316"], ["updated_at", "2015-08-08 22:08:39.133316"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 3], ["user_id", 3], ["created_at", "2015-08-08 22:08:39.134836"], ["updated_at", "2015-08-08 22:08:39.134836"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Tennyson"], ["created_at", "2015-08-08 22:08:48.979457"], ["updated_at", "2015-08-08 22:08:48.979457"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Cannery"], ["created_at", "2015-08-08 22:08:48.983552"], ["updated_at", "2015-08-08 22:08:48.983552"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Fremont"], ["created_at", "2015-08-08 22:08:48.986150"], ["updated_at", "2015-08-08 22:08:48.986150"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Millbrae"], ["created_at", "2015-08-08 22:08:48.988026"], ["updated_at", "2015-08-08 22:08:48.988026"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Soma"], ["created_at", "2015-08-08 22:08:48.989749"], ["updated_at", "2015-08-08 22:08:48.989749"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Harvey"], ["email", "Harvey@gmail.com"], ["created_at", "2015-08-08 22:08:48.998606"], ["updated_at", "2015-08-08 22:08:48.998606"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Ian"], ["email", "Ian@gmail.com"], ["created_at", "2015-08-08 22:08:49.001086"], ["updated_at", "2015-08-08 22:08:49.001086"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Shabazz"], ["email", "Shabazz@gmail.com"], ["created_at", "2015-08-08 22:08:49.003233"], ["updated_at", "2015-08-08 22:08:49.003233"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Chris"], ["email", "Chris@gmail.com"], ["created_at", "2015-08-08 22:08:49.005783"], ["updated_at", "2015-08-08 22:08:49.005783"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 1], ["user_id", 1], ["created_at", "2015-08-08 22:08:49.014163"], ["updated_at", "2015-08-08 22:08:49.014163"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 2], ["user_id", 1], ["created_at", "2015-08-08 22:08:49.016705"], ["updated_at", "2015-08-08 22:08:49.016705"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 3], ["user_id", 1], ["created_at", "2015-08-08 22:08:49.019125"], ["updated_at", "2015-08-08 22:08:49.019125"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 1], ["user_id", 2], ["created_at", "2015-08-08 22:08:49.021101"], ["updated_at", "2015-08-08 22:08:49.021101"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 2], ["user_id", 2], ["created_at", "2015-08-08 22:08:49.022731"], ["updated_at", "2015-08-08 22:08:49.022731"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 3], ["user_id", 2], ["created_at", "2015-08-08 22:08:49.024357"], ["updated_at", "2015-08-08 22:08:49.024357"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 1], ["user_id", 3], ["created_at", "2015-08-08 22:08:49.026038"], ["updated_at", "2015-08-08 22:08:49.026038"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["skatepark_id", 2], ["user_id", 3], ["created_at", "2015-08-08 22:08:49.027627"], ["updated_at", "2015-08-08 22:08:49.027627"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "favorites" ("skatepark_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["skatepark_id", 3], ["user_id", 3], ["created_at", "2015-08-08 22:08:49.029183"], ["updated_at", "2015-08-08 22:08:49.029183"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/api/users/1" for ::1 at 2015-08-08 15:09:14 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+SyntaxError (/Users/Yago/skate-life-backend/app/controllers/users_controller.rb:19: syntax error, unexpected ',', expecting =>
+    render json: {@user, @user.skateparks}
+                        ^
+/Users/Yago/skate-life-backend/app/controllers/users_controller.rb:19: syntax error, unexpected '}', expecting keyword_end
+/Users/Yago/skate-life-backend/app/controllers/users_controller.rb:35: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/users_controller.rb:19: syntax error, unexpected ',', expecting =>
+  app/controllers/users_controller.rb:19: syntax error, unexpected '}', expecting keyword_end
+  app/controllers/users_controller.rb:35: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.1ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.1ms)
+  Rendered /Users/Yago/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (96.0ms)
+
+
+Started GET "/api/users/1" for ::1 at 2015-08-08 15:10:05 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (1.8ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 179ms (Views: 30.8ms | ActiveRecord: 13.6ms)

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # render json: @user
-    render json: {@user, @user.skateparks}
+    render json: {user: @user, skateparks: @user.skateparks}
   end
 
   def destroy
