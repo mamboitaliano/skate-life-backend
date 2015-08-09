@@ -10,15 +10,6 @@
 # skateparks = ['Tennyson', 'Cannery', 'Fremont', 'Millbrae', 'Soma']
 # skateparks.each {|skatepark| Skatepark.create(name: skatepark)}
 
-# users = ['Harvey', 'Ian', 'Shabazz', 'Chris']
-# users.each {|user| User.create(name: user, email:"#{user}@gmail.com")}
-
-
-# 3.times do |i|
-#   3.times do |n|
-#     Favorite.create(skatepark_id: (n+1), user_id: (i+1))
-#   end
-# end
 
 
 require 'csv'
@@ -28,6 +19,7 @@ CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do
   park_params = Hash[row]
 
   if park_params[:address]
+    sleep(0.2)
     lat_long = Geokit::Geocoders::GoogleGeocoder.geocode(park_params[:address]) if park_params[:address]
 
     if park_params[:name]
@@ -42,4 +34,15 @@ CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do
     end
   end
 
+end
+
+
+users = ['Harvey', 'Ian', 'Shabazz', 'Chris']
+users.each {|user| User.create(name: user, email:"#{user}@gmail.com")}
+
+
+3.times do |i|
+  3.times do |n|
+    Favorite.create(skatepark_id: (n+1), user_id: (i+1))
+  end
 end
