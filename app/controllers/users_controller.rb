@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def authenticate
     p '*' * 100
-    p params
+    p User.methods
     p '*' * 100
     @user = User.where(uid: params[:google][:uid]).first
 
