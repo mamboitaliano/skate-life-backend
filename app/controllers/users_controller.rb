@@ -25,10 +25,10 @@ class UsersController < ApplicationController
     render nothing: true
   end
 
-  # def favorites
-  #   @user = User.find(params[:id])
-  #   render json: @user.skateparks
-  # end
+  def favorites
+    @user = User.find(params[:id])
+    render json: @user.skateparks
+  end
 
   def authenticate
     @user = User.where(uid: params[:google][:uid]).first
