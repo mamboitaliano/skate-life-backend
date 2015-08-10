@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def authenticate
-    @user = User.where(uid: params[:google][:uid]).first
+    @user = User.where(uid: params[:google][:id]).first
 
     if @user
       render json: @user

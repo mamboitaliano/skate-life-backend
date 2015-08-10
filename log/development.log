@@ -7794,3 +7794,5 @@ Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 1.8ms)
   [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
   [1m[35mSQL (1.5ms)[0m  DELETE FROM "users"
 >>>>>>> master
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mSQL (1.5ms)[0m  DELETE FROM "users"
