@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     # create a favorite, maybe make this more restful
     post '/users/:user_id/favorites/:skatepark_id' => 'favorites#create'
-    get '/users/:id/authenticate' => 'users#authenticate'
+    post '/users/:id/authenticate' => 'users#authenticate'
 
   end
 end
