@@ -1,17 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
-# skateparks = ['Tennyson', 'Cannery', 'Fremont', 'Millbrae', 'Soma']
-# skateparks.each {|skatepark| Skatepark.create(name: skatepark)}
-
-
-
 require 'csv'
 require 'geokit'
 
@@ -43,7 +29,6 @@ end
 
 
 
-  
 
 users = ['Harvey', 'Ian', 'Shabazz', 'Chris']
 users.each {|user| User.create(name: user, email:"#{user}@gmail.com")}
