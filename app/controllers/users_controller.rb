@@ -31,8 +31,42 @@ class UsersController < ApplicationController
   # end
 
   def authenticate
+    p '*' * 100
     p params
+    p '*' * 100
+    @user = User.where(uid: params[:uid]).first
+
+    # if @user
+    #   render json: @user
+    # else
+    #   @new_user = User.new(
+    #     uid: params[:uid],
+    #     name: params[:name],
+    #     email: params[:email])
+
+    #   @new_user.save ? (render json: @new_user) : (render json: {error: 'internal-server-error'}, status: 500})
+    # end
+    save_or_render_error
   end
+
+
+
+
+  private
+
+    def save_or_render_error
+      @new_user = User.new(
+        uid: params[:uid],
+        name: params[:name],
+        email: params[:email])
+
+      if @new_user.save
+        render json: @new_user
+      else
+        # render json: {error: 'internal-server-error', status: 500})
+        render json: {error: 'something went wrong with user'}
+      end
+    end
 
 
 
