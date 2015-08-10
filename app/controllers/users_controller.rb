@@ -31,8 +31,35 @@ class UsersController < ApplicationController
   end
 
   def authenticate
+    p '*' * 100
     p params
+    p '*' * 100
+    @user = User.where(uid: params[:google][:uid]).first
+
+    if @user
+      render json: @user
+    else
+      save_user
+    end
   end
+
+
+
+
+  private
+
+    def save_user
+
+      @new_user = User.new(
+        uid: params[:google][:id],
+        name: params[:google][:displayName])
+
+      if @new_user.save
+        render json: @new_user
+      else
+        render json: {error: 'something went wrong with user'}
+      end
+    end
 
 
 

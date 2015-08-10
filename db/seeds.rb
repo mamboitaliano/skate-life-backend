@@ -30,12 +30,12 @@ end
 
 
 
-users = ['Harvey', 'Ian', 'Shabazz', 'Chris']
-users.each {|user| User.create(name: user, email:"#{user}@gmail.com")}
+# users = ['Harvey', 'Ian', 'Shabazz', 'Chris']
+# users.each {|user| User.create(name: user, email:"#{user}@gmail.com")}
 
 
-3.times do |i|
-  3.times do |n|
-    Favorite.create(skatepark_id: (n+1), user_id: (i+1))
-  end
-end
+# 3.times do |i|
+#   3.times do |n|
+#     Favorite.create(skatepark_id: (n+1), user_id: (i+1))
+#   end
+# end
