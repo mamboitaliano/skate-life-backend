@@ -30,6 +30,10 @@ class UsersController < ApplicationController
   #   render json: @user.skateparks
   # end
 
+  def authenticate
+    p params
+  end
+
 
 
 end
