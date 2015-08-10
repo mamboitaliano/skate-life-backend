@@ -6406,3 +6406,1025 @@ Processing by UsersController#authenticate as HTML
   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
   [1m[35m (0.2ms)[0m  ROLLBACK
 Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20150807025824)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "uid" character varying, "name" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807025824"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSkateparks (20150807030123)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (15.3ms)[0m  [1mCREATE TABLE "skateparks" ("id" serial primary key, "name" character varying, "address" character varying, "lat" character varying, "lon" character varying, "fav_count" integer DEFAULT 0, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807030123"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFavorites (20150807030335)
+  [1m[35m (5.7ms)[0m  BEGIN
+  [1m[36m (7.0ms)[0m  [1mCREATE TABLE "favorites" ("id" serial primary key, "skatepark_id" integer, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (7.0ms)[0m  CREATE  INDEX  "index_favorites_on_skatepark_id" ON "favorites"  ("skatepark_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150807030335"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'favorites'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'skateparks'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "alameda"], ["address", "1st st & ave a alameda ca 94501"], ["lat", "34.1216679"], ["lon", "-117.9062605"], ["created_at", "2015-08-10 15:55:22.841749"], ["updated_at", "2015-08-10 15:55:22.841749"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "american canyon"], ["address", "298 benton way american canyon ca 94503"], ["lat", "38.1700621"], ["lon", "-122.2659525"], ["created_at", "2015-08-10 15:55:23.150853"], ["updated_at", "2015-08-10 15:55:23.150853"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "anaheim west"], ["address", "2271 w crescent ave anaheim ca 92801"], ["lat", "33.84028"], ["lon", "-117.9621765"], ["created_at", "2015-08-10 15:55:23.534539"], ["updated_at", "2015-08-10 15:55:23.534539"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "downtown skate zone"], ["address", "e broadway & s olive st anaheim ca 92805"], ["lat", "33.834212"], ["lon", "-117.9094369"], ["created_at", "2015-08-10 15:55:24.255853"], ["updated_at", "2015-08-10 15:55:24.255853"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "south volante skatepark"], ["address", "1887 howard st anderson ca 96007"], ["lat", "40.44778609999999"], ["lon", "-122.3001938"], ["created_at", "2015-08-10 15:55:24.565082"], ["updated_at", "2015-08-10 15:55:24.565082"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "antioch"], ["address", "4701 lone tree way antioch ca 94531"], ["lat", "37.966513"], ["lon", "-121.774019"], ["created_at", "2015-08-10 15:55:24.938720"], ["updated_at", "2015-08-10 15:55:24.938720"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "3 diamonds skatepark"], ["address", "13467 navajo rd apple valley ca 92308"], ["lat", "34.4960162"], ["lon", "-117.1897956"], ["created_at", "2015-08-10 15:55:25.242357"], ["updated_at", "2015-08-10 15:55:25.242357"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "bonita skatepark"], ["address", "207 bonita st arcadia ca 91006"], ["lat", "34.139005"], ["lon", "-118.024396"], ["created_at", "2015-08-10 15:55:25.539653"], ["updated_at", "2015-08-10 15:55:25.539653"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "arcata"], ["address", "sunset ave & jay st arcata ca 95521"], ["lat", "40.8797004"], ["lon", "-124.0848012"], ["created_at", "2015-08-10 15:55:25.902315"], ["updated_at", "2015-08-10 15:55:25.902315"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "a-town park"], ["address", "5493 traffic way atascadero ca 93422"], ["lat", "35.4964375"], ["lon", "-120.6676049"], ["created_at", "2015-08-10 15:55:26.204840"], ["updated_at", "2015-08-10 15:55:26.204840"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "osborn skatepark"], ["address", "501 e bellevue rd atwater ca 95301"], ["lat", "37.360498"], ["lon", "-120.5891453"], ["created_at", "2015-08-10 15:55:26.709614"], ["updated_at", "2015-08-10 15:55:26.709614"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "auburn"], ["address", "855 pacific ave auburn ca 95603"], ["lat", "38.8896062"], ["lon", "-121.0692587"], ["created_at", "2015-08-10 15:55:27.036023"], ["updated_at", "2015-08-10 15:55:27.036023"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "azusa"], ["address", "320 n orange pl azusa ca 91702"], ["lat", "34.127086"], ["lon", "-117.911757"], ["created_at", "2015-08-10 15:55:27.335398"], ["updated_at", "2015-08-10 15:55:27.335398"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "beach park"], ["address", "21st st & oak st bakersfield ca 93301"], ["lat", "35.3782047"], ["lon", "-119.0385863"], ["created_at", "2015-08-10 15:55:27.637738"], ["updated_at", "2015-08-10 15:55:27.637738"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "baldwin park"], ["address", "15010 badillo street baldwin park ca 91706"], ["lat", "34.0867878"], ["lon", "-117.9510663"], ["created_at", "2015-08-10 15:55:28.243804"], ["updated_at", "2015-08-10 15:55:28.243804"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "banning"], ["address", "n san gorgonio ave & e george st banning ca 92220"], ["lat", "33.9308066"], ["lon", "-116.8767679"], ["created_at", "2015-08-10 15:55:28.573954"], ["updated_at", "2015-08-10 15:55:28.573954"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dana park skatepark"], ["address", "840 barstow rd. barstow ca 92311"], ["lat", "34.8896849"], ["lon", "-117.0231015"], ["created_at", "2015-08-10 15:55:28.870747"], ["updated_at", "2015-08-10 15:55:28.870747"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "bell"], ["address", "4357 gage ave bell ca 90201"], ["lat", "33.9783589"], ["lon", "-118.1900029"], ["created_at", "2015-08-10 15:55:29.168013"], ["updated_at", "2015-08-10 15:55:29.168013"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "bell gardens"], ["address", "4357 gage avenue bell ca 90201"], ["lat", "33.9783589"], ["lon", "-118.1900029"], ["created_at", "2015-08-10 15:55:29.467760"], ["updated_at", "2015-08-10 15:55:29.467760"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "caruthers park"], ["address", "10500 e. flora vista street bellflower ca 90706"], ["lat", "33.8799729"], ["lon", "-118.1112803"], ["created_at", "2015-08-10 15:55:29.771348"], ["updated_at", "2015-08-10 15:55:29.771348"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "x-park"], ["address", "dempsey dr benicia ca 94510"], ["lat", "38.0864839"], ["lon", "-122.160322"], ["created_at", "2015-08-10 15:55:30.069989"], ["updated_at", "2015-08-10 15:55:30.069989"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "orkin/hsang memorial skatepark"], ["address", "5th st & harrison st berkeley ca 94710"], ["lat", "37.8809238"], ["lon", "-122.3030285"], ["created_at", "2015-08-10 15:55:30.444136"], ["updated_at", "2015-08-10 15:55:30.444136"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "big bear lake"], ["address", "40946 big bear blvd big bear lake ca 92315"], ["lat", "34.24421600000001"], ["lon", "-116.909072"], ["created_at", "2015-08-10 15:55:30.757600"], ["updated_at", "2015-08-10 15:55:30.757600"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "sugarloaf skatepark"], ["address", "44828 baldwin ln big bear city ca 92314"], ["lat", "34.2504647"], ["lon", "-116.8242962"], ["created_at", "2015-08-10 15:55:31.148865"], ["updated_at", "2015-08-10 15:55:31.148865"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "biggs"], ["address", "c st & 9th st biggs ca 95917"], ["lat", "39.413212"], ["lon", "-121.714183"], ["created_at", "2015-08-10 15:55:31.448616"], ["updated_at", "2015-08-10 15:55:31.448616"]]
+  [1m[35m (35.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "bishop"], ["address", "n main st & park st. bishop ca 93514"], ["lat", "37.3676149"], ["lon", "-118.3953259"], ["created_at", "2015-08-10 15:55:31.835346"], ["updated_at", "2015-08-10 15:55:31.835346"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mesa skate park"], ["address", "55 mesa rd bolinas ca 94924"], ["lat", "37.91133629999999"], ["lon", "-122.6951501"], ["created_at", "2015-08-10 15:55:32.137715"], ["updated_at", "2015-08-10 15:55:32.137715"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "borrego springs"], ["address", "630 cahuilla road borrego springs ca."], ["lat", "33.264179"], ["lon", "-116.377289"], ["created_at", "2015-08-10 15:55:32.431132"], ["updated_at", "2015-08-10 15:55:32.431132"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "blake davis skatepark"], ["address", "magnolia st & n 3rd st brawley ca 92227"], ["lat", "32.9850911"], ["lon", "-115.5372061"], ["created_at", "2015-08-10 15:55:32.745898"], ["updated_at", "2015-08-10 15:55:32.745898"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "brea"], ["address", "imperial hwy & berry st brea ca 92821"], ["lat", "33.9174381"], ["lon", "-117.9069837"], ["created_at", "2015-08-10 15:55:33.052147"], ["updated_at", "2015-08-10 15:55:33.052147"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "brentwood"], ["address", "198 griffith ln brentwood ca 94513"], ["lat", "37.927416"], ["lon", "-121.7060771"], ["created_at", "2015-08-10 15:55:33.355130"], ["updated_at", "2015-08-10 15:55:33.355130"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "buena park"], ["address", "7725 el dorado dr buena park ca 90620"], ["lat", "33.8484664"], ["lon", "-118.0023878"], ["created_at", "2015-08-10 15:55:33.664593"], ["updated_at", "2015-08-10 15:55:33.664593"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "burbank"], ["address", "1625 n valley st burbank ca 91505"], ["lat", "34.178014"], ["lon", "-118.3576627"], ["created_at", "2015-08-10 15:55:33.964060"], ["updated_at", "2015-08-10 15:55:33.964060"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "calexico nosotros saktepark"], ["address", "kloke rd & calexico st calexico ca 92231"], ["lat", "32.6736676"], ["lon", "-115.5159682"], ["created_at", "2015-08-10 15:55:34.259082"], ["updated_at", "2015-08-10 15:55:34.259082"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "pleasant valley skatepark"], ["address", "1030 temple ave camarillo ca 93010"], ["lat", "34.2280502"], ["lon", "-119.029427"], ["created_at", "2015-08-10 15:55:34.621259"], ["updated_at", "2015-08-10 15:55:34.621259"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cameron park"], ["address", "2380 merrychase dr cameron park ca 95682"], ["lat", "38.656538"], ["lon", "-121.007751"], ["created_at", "2015-08-10 15:55:34.926706"], ["updated_at", "2015-08-10 15:55:34.926706"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "carlsbad"], ["address", "2560 orion way carlsbad ca 92010"], ["lat", "33.1379459"], ["lon", "-117.2652212"], ["created_at", "2015-08-10 15:55:35.221484"], ["updated_at", "2015-08-10 15:55:35.221484"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "la sierra skatepark"], ["address", "5325 engle road carmichael ca 95608"], ["lat", "38.6342059"], ["lon", "-121.3396521"], ["created_at", "2015-08-10 15:55:35.586799"], ["updated_at", "2015-08-10 15:55:35.586799"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "carson"], ["address", "22400 moneta ave carson ca 90745"], ["lat", "33.8233103"], ["lon", "-118.2810759"], ["created_at", "2015-08-10 15:55:35.896074"], ["updated_at", "2015-08-10 15:55:35.896074"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "castroville"], ["address", "11261 crane st castroville ca 95012"], ["lat", "36.767407"], ["lon", "-121.755723"], ["created_at", "2015-08-10 15:55:36.185500"], ["updated_at", "2015-08-10 15:55:36.185500"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "ceres"], ["address", "moffett rd & fowler rd ceres ca 95307"], ["lat", "37.601996"], ["lon", "-120.947872"], ["created_at", "2015-08-10 15:55:36.532935"], ["updated_at", "2015-08-10 15:55:36.532935"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cerritos"], ["address", "19900 bloomfield ave cerritos ca 90703"], ["lat", "33.8486694"], ["lon", "-118.0601449"], ["created_at", "2015-08-10 15:55:36.909683"], ["updated_at", "2015-08-10 15:55:36.909683"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "chico"], ["address", "humboldt ave & flume st chico ca 95928"], ["lat", "39.7261023"], ["lon", "-121.8322658"], ["created_at", "2015-08-10 15:55:37.272450"], ["updated_at", "2015-08-10 15:55:37.272450"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "ayala park"], ["address", "central ave. & edison ave. chino ca 91708"], ["lat", "33.9972873"], ["lon", "-117.6890859"], ["created_at", "2015-08-10 15:55:37.575811"], ["updated_at", "2015-08-10 15:55:37.575811"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "chino hills"], ["address", "16333 fairfield ranch rd chino hills ca 91709"], ["lat", "33.958298"], ["lon", "-117.678162"], ["created_at", "2015-08-10 15:55:37.885439"], ["updated_at", "2015-08-10 15:55:37.885439"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "len moore skatepark"], ["address", "1301 oleander ave chula vista ca 91911"], ["lat", "32.6160058"], ["lon", "-117.0333054"], ["created_at", "2015-08-10 15:55:38.257657"], ["updated_at", "2015-08-10 15:55:38.257657"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "rusch skatepark"], ["address", "7801 auburn blvd. citrus heights ca. 95610"], ["lat", "38.7090096"], ["lon", "-121.291335"], ["created_at", "2015-08-10 15:55:38.614955"], ["updated_at", "2015-08-10 15:55:38.614955"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "krause family skatepark"], ["address", "3401 clairemont dr san diego ca 92117"], ["lat", "32.8041509"], ["lon", "-117.1982582"], ["created_at", "2015-08-10 15:55:39.005472"], ["updated_at", "2015-08-10 15:55:39.005472"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "claremont"], ["address", "1717 n indian hill blvd claremont ca 91711"], ["lat", "34.1150272"], ["lon", "-117.7206751"], ["created_at", "2015-08-10 15:55:39.307663"], ["updated_at", "2015-08-10 15:55:39.307663"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "clearlake"], ["address", "uhl ave & austin rd clearlake ca 95422"], ["lat", "38.9592787"], ["lon", "-122.646457"], ["created_at", "2015-08-10 15:55:39.607299"], ["updated_at", "2015-08-10 15:55:39.607299"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "letterman skatepark"], ["address", "villa ave & w 9th st clovis ca 93612"], ["lat", "36.8186946"], ["lon", "-119.7135046"], ["created_at", "2015-08-10 15:55:39.910221"], ["updated_at", "2015-08-10 15:55:39.910221"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "dateland park"], ["address", "medina st & shady ln coachella ca 92236"], ["lat", "33.6692749"], ["lon", "-116.173441"], ["created_at", "2015-08-10 15:55:40.223445"], ["updated_at", "2015-08-10 15:55:40.223445"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "wilson skatepark"], ["address", "123 north rose ave. compton ca 90220"], ["lat", "33.8961812"], ["lon", "-118.2190567"], ["created_at", "2015-08-10 15:55:40.539180"], ["updated_at", "2015-08-10 15:55:40.539180"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "concord"], ["address", "cowell rd & san miguel rd concord ca 94518"], ["lat", "37.9683442"], ["lon", "-122.0311242"], ["created_at", "2015-08-10 15:55:40.839111"], ["updated_at", "2015-08-10 15:55:40.839111"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "harada skatepark"], ["address", "13100 65th st. cleveland ave. corona ca"], ["lat", "33.8862654"], ["lon", "-117.4580588"], ["created_at", "2015-08-10 15:55:41.149201"], ["updated_at", "2015-08-10 15:55:41.149201"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "orchard skatepark"], ["address", "5900 festival way corona ca 92880"], ["lat", "33.9808049"], ["lon", "-117.57664"], ["created_at", "2015-08-10 15:55:41.447901"], ["updated_at", "2015-08-10 15:55:41.447901"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "santa regional skatepark"], ["address", "598 santana way corona ca 92881"], ["lat", "33.8524376"], ["lon", "-117.5598932"], ["created_at", "2015-08-10 15:55:41.745092"], ["updated_at", "2015-08-10 15:55:41.745092"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "corona city park"], ["address", "930 e 6th st corona ca 92879"], ["lat", "33.8745502"], ["lon", "-117.5564016"], ["created_at", "2015-08-10 15:55:42.060491"], ["updated_at", "2015-08-10 15:55:42.060491"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "huber skatepark"], ["address", "rolling meadow st & northfork dr corona ca 92880"], ["lat", "33.9721685"], ["lon", "-117.5882894"], ["created_at", "2015-08-10 15:55:42.369177"], ["updated_at", "2015-08-10 15:55:42.369177"]]
+  [1m[35m (1.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "coronado"], ["address", "2000 mullinex drive coronado ca 92118"], ["lat", "32.6921518"], ["lon", "-117.1664562"], ["created_at", "2015-08-10 15:55:42.677191"], ["updated_at", "2015-08-10 15:55:42.677191"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "volcom skatepark"], ["address", "970 arlington dr costa mesa ca 92626"], ["lat", "33.6709106"], ["lon", "-117.8944097"], ["created_at", "2015-08-10 15:55:42.980380"], ["updated_at", "2015-08-10 15:55:42.980380"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "volcom skatepark"], ["address", "970 arlington dr. costa mesa ca"], ["lat", "33.6709106"], ["lon", "-117.8944097"], ["created_at", "2015-08-10 15:55:43.285168"], ["updated_at", "2015-08-10 15:55:43.285168"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "crescent city"], ["address", "5th st & e st crescent city ca 95531"], ["lat", "41.7521226"], ["lon", "-124.2017944"], ["created_at", "2015-08-10 15:55:43.627141"], ["updated_at", "2015-08-10 15:55:43.627141"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cudahy"], ["address", "5240 santa ana st cudahy ca 90201"], ["lat", "33.9596501"], ["lon", "-118.1745629"], ["created_at", "2015-08-10 15:55:43.919623"], ["updated_at", "2015-08-10 15:55:43.919623"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "culver city"], ["address", "9910 jefferson blvd. culver city ca 90232"], ["lat", "34.0151036"], ["lon", "-118.3877277"], ["created_at", "2015-08-10 15:55:44.220844"], ["updated_at", "2015-08-10 15:55:44.220844"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cypress"], ["address", "4554 avenida granada cypress ca 90630"], ["lat", "33.8182834"], ["lon", "-118.053668"], ["created_at", "2015-08-10 15:55:44.526872"], ["updated_at", "2015-08-10 15:55:44.526872"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "davis"], ["address", "1405 f st davis ca 95616"], ["lat", "38.5569238"], ["lon", "-121.743349"], ["created_at", "2015-08-10 15:55:44.852310"], ["updated_at", "2015-08-10 15:55:44.852310"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "delano"], ["address", "cecil ave & madison st delano ca 93215"], ["lat", "35.7759206"], ["lon", "-119.2420169"], ["created_at", "2015-08-10 15:55:45.154919"], ["updated_at", "2015-08-10 15:55:45.154919"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "delhi"], ["address", "shanks rd & schendel ave delhi ca 95315"], ["lat", "37.4268051"], ["lon", "-120.7861339"], ["created_at", "2015-08-10 15:55:45.453993"], ["updated_at", "2015-08-10 15:55:45.453993"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "desert hot springs"], ["address", "west dr & 1st st desert hot springs ca 92240"], ["lat", "33.9623716"], ["lon", "-116.510128"], ["created_at", "2015-08-10 15:55:45.755945"], ["updated_at", "2015-08-10 15:55:45.755945"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "diamond bar"], ["address", "24142 sylvan glen rd diamond bar ca 91765"], ["lat", "34.0292093"], ["lon", "-117.7946236"], ["created_at", "2015-08-10 15:55:46.064036"], ["updated_at", "2015-08-10 15:55:46.064036"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "dixon"], ["address", "hall park dr & e chestnut st. dixon ca 95620"], ["lat", "38.44178"], ["lon", "-121.8187935"], ["created_at", "2015-08-10 15:55:46.384166"], ["updated_at", "2015-08-10 15:55:46.384166"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "independence park"], ["address", "12334 bellflower blvd downey ca 90242"], ["lat", "33.919509"], ["lon", "-118.121334"], ["created_at", "2015-08-10 15:55:46.672685"], ["updated_at", "2015-08-10 15:55:46.672685"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "duarte"], ["address", "1401 central ave. duarte ca 91010"], ["lat", "34.1360055"], ["lon", "-117.9755981"], ["created_at", "2015-08-10 15:55:46.971510"], ["updated_at", "2015-08-10 15:55:46.971510"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "pamela park"], ["address", "2236 goodall ave duarte ca 91010"], ["lat", "34.1233827"], ["lon", "-117.9938893"], ["created_at", "2015-08-10 15:55:47.267608"], ["updated_at", "2015-08-10 15:55:47.267608"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "emerald glen skatepark"], ["address", "4201 central pkwy dublin ca 94568"], ["lat", "37.7105105"], ["lon", "-121.8784509"], ["created_at", "2015-08-10 15:55:47.562279"], ["updated_at", "2015-08-10 15:55:47.562279"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "kennedy skatepark"], ["address", "1675 e madison ave el cajon ca 92019"], ["lat", "32.7999147"], ["lon", "-116.9195447"], ["created_at", "2015-08-10 15:55:47.877479"], ["updated_at", "2015-08-10 15:55:47.877479"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "renette skate plaza"], ["address", "935 emerald ave el cajon ca 92020"], ["lat", "32.7833394"], ["lon", "-116.9686023"], ["created_at", "2015-08-10 15:55:48.192789"], ["updated_at", "2015-08-10 15:55:48.192789"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "el dorado hills"], ["address", "1021 harvard way el dorado hills ca 95762"], ["lat", "38.6826809"], ["lon", "-121.074868"], ["created_at", "2015-08-10 15:55:48.489030"], ["updated_at", "2015-08-10 15:55:48.489030"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "el segundo"], ["address", "405 e grand ave el segundo ca 90245"], ["lat", "33.9197379"], ["lon", "-118.412054"], ["created_at", "2015-08-10 15:55:48.803545"], ["updated_at", "2015-08-10 15:55:48.803545"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "elk grove"], ["address", "9014 bruceville rd elk grove ca 95758"], ["lat", "38.4296888"], ["lon", "-121.4189832"], ["created_at", "2015-08-10 15:55:49.101303"], ["updated_at", "2015-08-10 15:55:49.101303"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "derr-okamota park"], ["address", "9550 mainline drive elk grove ca 95624"], ["lat", "38.4027045"], ["lon", "-121.3390596"], ["created_at", "2015-08-10 15:55:49.393067"], ["updated_at", "2015-08-10 15:55:49.393067"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "magdalena ecke family ymca"], ["address", "200 saxony rd encinitas ca 92024"], ["lat", "33.0526106"], ["lon", "-117.2867675"], ["created_at", "2015-08-10 15:55:49.687330"], ["updated_at", "2015-08-10 15:55:49.687330"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pedlow"], ["address", "17334 victory blvd. encino ca 91406"], ["lat", "34.18661830000001"], ["lon", "-118.5106119"], ["created_at", "2015-08-10 15:55:49.985949"], ["updated_at", "2015-08-10 15:55:49.985949"]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "escondido sports center"], ["address", "3315 bear valley pkwy s escondido ca"], ["lat", "33.0766704"], ["lon", "-117.0623095"], ["created_at", "2015-08-10 15:55:50.297330"], ["updated_at", "2015-08-10 15:55:50.297330"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "eureka"], ["address", "1720 10th st eureka ca 95501"], ["lat", "40.7997538"], ["lon", "-124.1514135"], ["created_at", "2015-08-10 15:55:50.676549"], ["updated_at", "2015-08-10 15:55:50.676549"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "allan witt rotary skatepark"], ["address", "1900 woolner ave fairfield ca 94533"], ["lat", "38.24656"], ["lon", "-122.06281"], ["created_at", "2015-08-10 15:55:50.966869"], ["updated_at", "2015-08-10 15:55:50.966869"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "travis air force base"], ["address", "air base pkwy fairfield ca"], ["lat", "38.272558"], ["lon", "-122.0014516"], ["created_at", "2015-08-10 15:55:51.270123"], ["updated_at", "2015-08-10 15:55:51.270123"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "fallbrook"], ["address", "445 e ivy st fallbrook ca 92028"], ["lat", "33.383283"], ["lon", "-117.246716"], ["created_at", "2015-08-10 15:55:51.577114"], ["updated_at", "2015-08-10 15:55:51.577114"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "fillmore"], ["address", "river st. & c. st. fillmore ca 93015"], ["lat", "34.39307"], ["lon", "-118.926799"], ["created_at", "2015-08-10 15:55:51.895328"], ["updated_at", "2015-08-10 15:55:51.895328"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "maldonado skatepark"], ["address", "clyde fannon rd & thomas conboy ave firebaugh ca 93622"], ["lat", "36.8680271"], ["lon", "-120.4634535"], ["created_at", "2015-08-10 15:55:52.202646"], ["updated_at", "2015-08-10 15:55:52.202646"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "mathy bethune skatepark"], ["address", "hooper ave & e 62nd st florence-graham ca 90001"], ["lat", "33.9834182"], ["lon", "-118.2520705"], ["created_at", "2015-08-10 15:55:52.504718"], ["updated_at", "2015-08-10 15:55:52.504718"]]
+  [1m[36m (46.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "cummings skatepark"], ["address", "1775 creekside dr folsom ca 95630-3457"], ["lat", "38.673376"], ["lon", "-121.137442"], ["created_at", "2015-08-10 15:55:52.861464"], ["updated_at", "2015-08-10 15:55:52.861464"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "juniper community center (fontana south)"], ["address", "16581 filbert ave fontana ca 92336"], ["lat", "34.0821156"], ["lon", "-117.4433076"], ["created_at", "2015-08-10 15:55:53.155776"], ["updated_at", "2015-08-10 15:55:53.155776"]]
+  [1m[36m (5.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "jesse turner skatepark (fontana north)"], ["address", "5553 lytle creek rd. fontana ca 92336"], ["lat", "34.1531461"], ["lon", "-117.4662803"], ["created_at", "2015-08-10 15:55:53.462358"], ["updated_at", "2015-08-10 15:55:53.462358"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "frazier park"], ["address", "4001 frazier mountain park rd frazier park ca 93225"], ["lat", "34.8179417"], ["lon", "-118.8880631"], ["created_at", "2015-08-10 15:55:53.765914"], ["updated_at", "2015-08-10 15:55:53.765914"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "the ark"], ["address", "1707 w jensen ave fresno ca 93706"], ["lat", "36.7066751"], ["lon", "-119.8299067"], ["created_at", "2015-08-10 15:55:54.070075"], ["updated_at", "2015-08-10 15:55:54.070075"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "kaiser ramp park"], ["address", "425 e alluvial ave fresno ca 93720"], ["lat", "36.8446283"], ["lon", "-119.7790511"], ["created_at", "2015-08-10 15:55:54.373197"], ["updated_at", "2015-08-10 15:55:54.373197"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "cary ramp park"], ["address", "4750 n fresno st fresno ca 93726"], ["lat", "36.80368240000001"], ["lon", "-119.7813751"], ["created_at", "2015-08-10 15:55:54.688795"], ["updated_at", "2015-08-10 15:55:54.688795"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "melody ramp park"], ["address", "5935 e shields ave fresno ca 93727"], ["lat", "36.7799498"], ["lon", "-119.6852249"], ["created_at", "2015-08-10 15:55:54.991702"], ["updated_at", "2015-08-10 15:55:54.991702"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "romain ramp park"], ["address", "745 n 1st st fresno ca 93701"], ["lat", "36.7537682"], ["lon", "-119.7735807"], ["created_at", "2015-08-10 15:55:55.304703"], ["updated_at", "2015-08-10 15:55:55.304703"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "todd beamer skatepark"], ["address", "9797 n. maple fresno ca 93720"], ["lat", "36.8762095"], ["lon", "-119.7476682"], ["created_at", "2015-08-10 15:55:55.608514"], ["updated_at", "2015-08-10 15:55:55.608514"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mosqueda bike park"], ["address", "e butler ave & s maple ave fresno ca 93702"], ["lat", "36.72864089999999"], ["lon", "-119.7455622"], ["created_at", "2015-08-10 15:55:55.919371"], ["updated_at", "2015-08-10 15:55:55.919371"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "lion's den skatepark"], ["address", "n emerson ave & w indianapolis ave fresno ca 93705"], ["lat", "36.8010098"], ["lon", "-119.8433991"], ["created_at", "2015-08-10 15:55:56.226277"], ["updated_at", "2015-08-10 15:55:56.226277"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "galt"], ["address", "620 chabolla ave galt ca 95632"], ["lat", "38.250262"], ["lon", "-121.298296"], ["created_at", "2015-08-10 15:55:56.516310"], ["updated_at", "2015-08-10 15:55:56.516310"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "garden grove"], ["address", "9301 westminster ave garden grove ca 92844"], ["lat", "33.76235"], ["lon", "-117.9670204"], ["created_at", "2015-08-10 15:55:57.133984"], ["updated_at", "2015-08-10 15:55:57.133984"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "rowley park"], ["address", "13220 van ness ave gardena ca 90249"], ["lat", "33.91206"], ["lon", "-118.3175942"], ["created_at", "2015-08-10 15:55:57.436994"], ["updated_at", "2015-08-10 15:55:57.436994"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "glendora"], ["address", "160 wabash n. ave glendora ca"], ["lat", "34.1379829"], ["lon", "-117.8611096"], ["created_at", "2015-08-10 15:55:58.045131"], ["updated_at", "2015-08-10 15:55:58.045131"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "garvanza skatepark"], ["address", "6240 e. meridian ave. los angeles ca 90042"], ["lat", "34.120106"], ["lon", "-118.1813924"], ["created_at", "2015-08-10 15:55:58.358753"], ["updated_at", "2015-08-10 15:55:58.358753"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "north hollywood skate plaza"], ["address", "magnolia boulevard and tujunga avenue north hollywood ca 91601"], ["lat", "34.1649059"], ["lon", "-118.3789878"], ["created_at", "2015-08-10 15:55:58.968410"], ["updated_at", "2015-08-10 15:55:58.968410"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mariners church/harvard skatepark"], ["address", "5001 newport coast drive irvine ca 92603"], ["lat", "33.6317417"], ["lon", "-117.833713"], ["created_at", "2015-08-10 15:55:59.267757"], ["updated_at", "2015-08-10 15:55:59.267757"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "james huber skatepark"], ["address", "6411 rolling meadow st. jurupa ca. 92880"], ["lat", "33.971583"], ["lon", "-117.590826"], ["created_at", "2015-08-10 15:55:59.579569"], ["updated_at", "2015-08-10 15:55:59.579569"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "la verne"], ["address", "3104 d street la verne ca 91750"], ["lat", "34.1081552"], ["lon", "-117.7672137"], ["created_at", "2015-08-10 15:55:59.890647"], ["updated_at", "2015-08-10 15:55:59.890647"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "laguna niguel"], ["address", "27745 alicia pkwy. laguna niguel ca. 92677"], ["lat", "33.5603949"], ["lon", "-117.7169329"], ["created_at", "2015-08-10 15:56:00.193132"], ["updated_at", "2015-08-10 15:56:00.193132"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "etnies skatepark"], ["address", "20028 lake forest drive lake forest ca 92630"], ["lat", "33.6708868"], ["lon", "-117.6602743"], ["created_at", "2015-08-10 15:56:00.517313"], ["updated_at", "2015-08-10 15:56:00.517313"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "vandenberg skatepark"], ["address", "h st. & e. central ave. lompoc ca. 93436"], ["lat", "34.6607371"], ["lon", "-120.4577239"], ["created_at", "2015-08-10 15:56:00.830199"], ["updated_at", "2015-08-10 15:56:00.830199"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "el dorado skatepark"], ["address", "2800 studebaker road long beach ca 90804"], ["lat", "33.8068623"], ["lon", "-118.0970609"], ["created_at", "2015-08-10 15:56:01.152082"], ["updated_at", "2015-08-10 15:56:01.152082"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "nickerson gardens"], ["address", "11251 compton ave. los angeles ca 90059"], ["lat", "33.9326531"], ["lon", "-118.2463394"], ["created_at", "2015-08-10 15:56:01.740037"], ["updated_at", "2015-08-10 15:56:01.740037"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "stoner skate plaza"], ["address", "1835 stoner ave. los angeles ca 90025"], ["lat", "34.0379657"], ["lon", "-118.4540849"], ["created_at", "2015-08-10 15:56:02.045920"], ["updated_at", "2015-08-10 15:56:02.045920"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "imperial court skate plaza"], ["address", "2250 w. 114th st. los angeles ca 90059"], ["lat", "33.9312067"], ["lon", "-118.2324169"], ["created_at", "2015-08-10 15:56:02.427520"], ["updated_at", "2015-08-10 15:56:02.427520"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "lincoln park"], ["address", "3501 valley blvd los angeles ca 90031"], ["lat", "34.0658872"], ["lon", "-118.1991957"], ["created_at", "2015-08-10 15:56:02.803598"], ["updated_at", "2015-08-10 15:56:02.803598"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "hollenbeck skate plaza"], ["address", "415 saint louis street los angeles ca 90033"], ["lat", "34.0414814"], ["lon", "-118.216267"], ["created_at", "2015-08-10 15:56:03.128420"], ["updated_at", "2015-08-10 15:56:03.128420"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "belvedere skatepark"], ["address", "4914 east cesar e chavez avenue los angeles ca 90022"], ["lat", "34.0402191"], ["lon", "-118.1591272"], ["created_at", "2015-08-10 15:56:03.437212"], ["updated_at", "2015-08-10 15:56:03.437212"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "charmette bonpua skate plaza"], ["address", "5001 rodeo rd los angeles ca"], ["lat", "34.0223792"], ["lon", "-118.3517322"], ["created_at", "2015-08-10 15:56:03.800721"], ["updated_at", "2015-08-10 15:56:03.800721"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "lafayette skate plaza"], ["address", "625 south lafayette park place los angeles ca 90057"], ["lat", "34.062064"], ["lon", "-118.2830924"], ["created_at", "2015-08-10 15:56:04.212606"], ["updated_at", "2015-08-10 15:56:04.212606"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "westchester skate plaza"], ["address", "7000 w manchester ave los angeles ca 90045"], ["lat", "33.9595171"], ["lon", "-118.4154114"], ["created_at", "2015-08-10 15:56:04.588202"], ["updated_at", "2015-08-10 15:56:04.588202"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mariposa"], ["address", "4998-county park road mariposa ca 95338"], ["lat", "37.48173269999999"], ["lon", "-119.9658838"], ["created_at", "2015-08-10 15:56:04.892592"], ["updated_at", "2015-08-10 15:56:04.892592"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "mather sports center skatepark"], ["address", "3755 schriever avenue. mather ca 95655"], ["lat", "38.5711484"], ["lon", "-121.3017764"], ["created_at", "2015-08-10 15:56:05.287731"], ["updated_at", "2015-08-10 15:56:05.287731"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "burgess skate park"], ["address", "700 alma street menlo park ca 94025"], ["lat", "37.4528628"], ["lon", "-122.1785575"], ["created_at", "2015-08-10 15:56:05.662964"], ["updated_at", "2015-08-10 15:56:05.662964"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "applegate skatepark"], ["address", "678 west 18th street merced ca 95340"], ["lat", "37.3030057"], ["lon", "-120.4854704"], ["created_at", "2015-08-10 15:56:05.973431"], ["updated_at", "2015-08-10 15:56:05.973431"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mill valley skatepark"], ["address", "180 camino alto mill valley ca 94941"], ["lat", "37.899213"], ["lon", "-122.5282905"], ["created_at", "2015-08-10 15:56:06.355225"], ["updated_at", "2015-08-10 15:56:06.355225"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "beebe skatepark"], ["address", "24190 olympiad road mission viejo ca 92692"], ["lat", "33.6107727"], ["lon", "-117.6314051"], ["created_at", "2015-08-10 15:56:06.708089"], ["updated_at", "2015-08-10 15:56:06.708089"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "modesto skatepark"], ["address", "forest glenn drive at sylvan ave. modesto ca 95355"], ["lat", "37.6888903"], ["lon", "-120.9717074"], ["created_at", "2015-08-10 15:56:07.338267"], ["updated_at", "2015-08-10 15:56:07.338267"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "monrovia skatepark"], ["address", "701-899 e olive ave monrovia ca"], ["lat", "34.1443541"], ["lon", "-117.9863228"], ["created_at", "2015-08-10 15:56:07.698453"], ["updated_at", "2015-08-10 15:56:07.698453"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "monrovia"], ["address", "mountain ave. & east olive ave. monrovia ca 91016"], ["lat", "34.1443249"], ["lon", "-117.986288"], ["created_at", "2015-08-10 15:56:08.024313"], ["updated_at", "2015-08-10 15:56:08.024313"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "montclair"], ["address", "5111 benito st. montclair ca 91763"], ["lat", "34.0737148"], ["lon", "-117.6933745"], ["created_at", "2015-08-10 15:56:08.378997"], ["updated_at", "2015-08-10 15:56:08.378997"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "russian river skatepark"], ["address", "9725 main street monte rio ca 95462"], ["lat", "38.46056799999999"], ["lon", "-123.011409"], ["created_at", "2015-08-10 15:56:08.762117"], ["updated_at", "2015-08-10 15:56:08.762117"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "montebello skatepark"], ["address", "1300 whittier blvd. montebello ca 90640"], ["lat", "34.0113569"], ["lon", "-118.1139722"], ["created_at", "2015-08-10 15:56:09.073673"], ["updated_at", "2015-08-10 15:56:09.073673"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "el estero skatepark"], ["address", "el estero park complex 777 pearl street monterey ca 93940"], ["lat", "36.5991205"], ["lon", "-121.8854337"], ["created_at", "2015-08-10 15:56:09.434877"], ["updated_at", "2015-08-10 15:56:09.434877"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "poindexter skatepark"], ["address", "500 poindexter avenue moorepark ca 93021"], ["lat", "34.2846863"], ["lon", "-118.8885562"], ["created_at", "2015-08-10 15:56:09.773642"], ["updated_at", "2015-08-10 15:56:09.773642"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "lamorinda skatepark"], ["address", "1799 st. mary's road moraga ca 94556"], ["lat", "37.849099"], ["lon", "-122.108345"], ["created_at", "2015-08-10 15:56:10.071427"], ["updated_at", "2015-08-10 15:56:10.071427"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "moreno valley skateboard park"], ["address", "w street and sixth street moreno valley ca 92551"], ["lat", "33.89697"], ["lon", "-117.2477621"], ["created_at", "2015-08-10 15:56:10.452215"], ["updated_at", "2015-08-10 15:56:10.452215"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "morgan hill"], ["address", "100 edes ct. morgan hill ca 95037"], ["lat", "37.1150017"], ["lon", "-121.6458172"], ["created_at", "2015-08-10 15:56:10.757577"], ["updated_at", "2015-08-10 15:56:10.757577"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "morgan hill skate park"], ["address", "171 e edmundson avenue morgan hill california 95037"], ["lat", "37.1155699"], ["lon", "-121.6406816"], ["created_at", "2015-08-10 15:56:11.080780"], ["updated_at", "2015-08-10 15:56:11.080780"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "rockies skatepark"], ["address", "231 atascadero road morro bay ca 93442"], ["lat", "35.3800559"], ["lon", "-120.8573554"], ["created_at", "2015-08-10 15:56:11.378863"], ["updated_at", "2015-08-10 15:56:11.378863"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "mires's skatepark"], ["address", "s rengstorff avenue and central expy"], ["lat", "37.4031513"], ["lon", "-122.0973353"], ["created_at", "2015-08-10 15:56:11.738467"], ["updated_at", "2015-08-10 15:56:11.738467"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "cal oaks skatepark"], ["address", "40606 california oaks road murrieta ca 92562"], ["lat", "33.5745429"], ["lon", "-117.2015843"], ["created_at", "2015-08-10 15:56:12.190718"], ["updated_at", "2015-08-10 15:56:12.190718"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "murrieta"], ["address", "california oaks rd. & lincoln ave. murrieta ca. 92562"], ["lat", "33.5750847"], ["lon", "-117.2013654"], ["created_at", "2015-08-10 15:56:12.488220"], ["updated_at", "2015-08-10 15:56:12.488220"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "napa rip zone skatepark"], ["address", "pearl street and west street napa ca 94558"], ["lat", "38.301044"], ["lon", "-122.2857606"], ["created_at", "2015-08-10 15:56:12.801605"], ["updated_at", "2015-08-10 15:56:12.801605"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "needles"], ["address", "1109 civic center dr. needles ca 92363"], ["lat", "34.8350591"], ["lon", "-114.6166108"], ["created_at", "2015-08-10 15:56:13.163638"], ["updated_at", "2015-08-10 15:56:13.163638"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "needles skatepark"], ["address", "1185 army rd. needles ca 92363"], ["lat", "34.8369236"], ["lon", "-114.611812"], ["created_at", "2015-08-10 15:56:13.458300"], ["updated_at", "2015-08-10 15:56:13.458300"]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "newbury park skatepark"], ["address", "190 north reino road newbury park ca 91320"], ["lat", "34.1808736"], ["lon", "-118.9516915"], ["created_at", "2015-08-10 15:56:13.755150"], ["updated_at", "2015-08-10 15:56:13.755150"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "north hollywood skate plaza"], ["address", "11430 chandler boulevard los angeles ca 91601"], ["lat", "34.1674451"], ["lon", "-118.3803567"], ["created_at", "2015-08-10 15:56:14.122922"], ["updated_at", "2015-08-10 15:56:14.122922"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "doyle skatepark"], ["address", "12200 sproul st norwalk ca 90650"], ["lat", "33.9087172"], ["lon", "-118.072172"], ["created_at", "2015-08-10 15:56:14.478345"], ["updated_at", "2015-08-10 15:56:14.478345"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "novato skatepark"], ["address", "1200 n hamilton pkwy novato ca 94949"], ["lat", "38.0612102"], ["lon", "-122.5286805"], ["created_at", "2015-08-10 15:56:14.950979"], ["updated_at", "2015-08-10 15:56:14.950979"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "boys and girls club skatepark"], ["address", "40094 indian springs road oakhurst ca 93644"], ["lat", "37.3334195"], ["lon", "-119.6389262"], ["created_at", "2015-08-10 15:56:15.315750"], ["updated_at", "2015-08-10 15:56:15.315750"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "youth uprising skate plaza"], ["address", "8711 macarthur blvd. oakland ca 94605"], ["lat", "37.75832880000001"], ["lon", "-122.1623727"], ["created_at", "2015-08-10 15:56:15.617317"], ["updated_at", "2015-08-10 15:56:15.617317"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "robb field skatepark"], ["address", "2525 bacon street san diego ca 92107"], ["lat", "32.7543519"], ["lon", "-117.2414578"], ["created_at", "2015-08-10 15:56:15.913340"], ["updated_at", "2015-08-10 15:56:15.913340"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "john landes skatepark"], ["address", "4125 lewis street oceanside ca 92056"], ["lat", "33.1957192"], ["lon", "-117.2861902"], ["created_at", "2015-08-10 15:56:16.214951"], ["updated_at", "2015-08-10 15:56:16.214951"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "martin luther king jr. skatepark"], ["address", "4300 mesa dr oceanside ca 92057"], ["lat", "33.2166718"], ["lon", "-117.3048127"], ["created_at", "2015-08-10 15:56:16.583185"], ["updated_at", "2015-08-10 15:56:16.583185"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "libby lake skatepark"], ["address", "504 calle montecito oceanside ca 92057"], ["lat", "33.2497719"], ["lon", "-117.3091008"], ["created_at", "2015-08-10 15:56:16.943570"], ["updated_at", "2015-08-10 15:56:16.943570"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "bishop skatepark"], ["address", "5306 north river road oceanside ca 92057"], ["lat", "33.2564873"], ["lon", "-117.2919547"], ["created_at", "2015-08-10 15:56:17.253543"], ["updated_at", "2015-08-10 15:56:17.253543"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "alex road skatepark"], ["address", "alex road and and foussat road oceanside ca 92058"], ["lat", "33.2211188"], ["lon", "-117.3447764"], ["created_at", "2015-08-10 15:56:17.547592"], ["updated_at", "2015-08-10 15:56:17.547592"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "ojai"], ["address", "405 e. ojai ave ojai ca 93023"], ["lat", "34.4479288"], ["lon", "-119.2429221"], ["created_at", "2015-08-10 15:56:17.843078"], ["updated_at", "2015-08-10 15:56:17.843078"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "vans skatepark"], ["address", "20 city boulevard west orange ca 92861"], ["lat", "33.7828653"], ["lon", "-117.8922272"], ["created_at", "2015-08-10 15:56:18.254313"], ["updated_at", "2015-08-10 15:56:18.254313"]]
+  [1m[35m (1.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "orange cove skatepark"], ["address", "s. anchor avenue and parlier avenue orange cove ca 93646"], ["lat", "36.610211"], ["lon", "-119.3227813"], ["created_at", "2015-08-10 15:56:18.642452"], ["updated_at", "2015-08-10 15:56:18.642452"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "bedrock skate and bike park"], ["address", "1100 feather river blvd oroville ca 95965"], ["lat", "39.5102578"], ["lon", "-121.5697166"], ["created_at", "2015-08-10 15:56:18.934720"], ["updated_at", "2015-08-10 15:56:18.934720"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "oxnard"], ["address", "3250 south rose ave oxnard ca"], ["lat", "34.1701738"], ["lon", "-119.1626026"], ["created_at", "2015-08-10 15:56:19.304996"], ["updated_at", "2015-08-10 15:56:19.304996"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "oxnard skatepark"], ["address", "3250 south rose avenue oxnard ca 93033"], ["lat", "34.1701738"], ["lon", "-119.1626026"], ["created_at", "2015-08-10 15:56:19.608301"], ["updated_at", "2015-08-10 15:56:19.608301"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pacifica skatepark"], ["address", "540 crespi drive pacifica ca 94044"], ["lat", "37.59855100000001"], ["lon", "-122.4996276"], ["created_at", "2015-08-10 15:56:19.908464"], ["updated_at", "2015-08-10 15:56:19.908464"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "p-rod skatepark"], ["address", "10731 laurel canyon blvd pacoima ca 91331"], ["lat", "34.2646533"], ["lon", "-118.4390678"], ["created_at", "2015-08-10 15:56:20.213729"], ["updated_at", "2015-08-10 15:56:20.213729"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pala skatepark"], ["address", "12100 pala mission road pala ca 92059"], ["lat", "33.3650791"], ["lon", "-117.0716912"], ["created_at", "2015-08-10 15:56:20.521420"], ["updated_at", "2015-08-10 15:56:20.521420"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "pala"], ["address", "12196 pala mission rd pala ca. 92059"], ["lat", "33.366545"], ["lon", "-117.0690642"], ["created_at", "2015-08-10 15:56:20.830772"], ["updated_at", "2015-08-10 15:56:20.830772"]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "palm desert"], ["address", "fred waring dr & san pablo ave palm desert riverside california 92260"], ["lat", "33.7287549"], ["lon", "-116.382545"], ["created_at", "2015-08-10 15:56:21.134083"], ["updated_at", "2015-08-10 15:56:21.134083"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "sunrise plaza skatepark"], ["address", "4401 south pavilion way palm springs ca 92262"], ["lat", "33.8182176"], ["lon", "-116.5238286"], ["created_at", "2015-08-10 15:56:21.425893"], ["updated_at", "2015-08-10 15:56:21.425893"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "chris o'leary skatepark"], ["address", "dominic massari park 37716 55th street palmdale ca 93552"], ["lat", "34.5689442"], ["lon", "-118.0316915"], ["created_at", "2015-08-10 15:56:21.804143"], ["updated_at", "2015-08-10 15:56:21.804143"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "greer skatepark"], ["address", "1098 amarillo avenue palo alto ca 94303"], ["lat", "37.4439138"], ["lon", "-122.119563"], ["created_at", "2015-08-10 15:56:22.097808"], ["updated_at", "2015-08-10 15:56:22.097808"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cardenas skate plaza"], ["address", "14740 blythe st. panorama city ca 91402"], ["lat", "34.2151828"], ["lon", "-118.4543639"], ["created_at", "2015-08-10 15:56:22.460923"], ["updated_at", "2015-08-10 15:56:22.460923"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "village skatepark"], ["address", "7700 somerset ave. paramount ca 90723"], ["lat", "33.8963209"], ["lon", "-118.1653671"], ["created_at", "2015-08-10 15:56:22.759878"], ["updated_at", "2015-08-10 15:56:22.759878"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pasadena skatepark"], ["address", "45 east washington boulevard pasadena ca 91101"], ["lat", "34.1688763"], ["lon", "-118.1495294"], ["created_at", "2015-08-10 15:56:23.143663"], ["updated_at", "2015-08-10 15:56:23.143663"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "compound skatepark"], ["address", "18700 lake perris dr. perris ca 92571"], ["lat", "33.8476366"], ["lon", "-117.2012829"], ["created_at", "2015-08-10 15:56:23.504979"], ["updated_at", "2015-08-10 15:56:23.504979"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "ramp rats skatepark"], ["address", "1004 lakeville st petaluma ca 94952"], ["lat", "38.2346999"], ["lon", "-122.621653"], ["created_at", "2015-08-10 15:56:23.806348"], ["updated_at", "2015-08-10 15:56:23.806348"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "petaluma skatepark"], ["address", "east washington street and fairgrounds drive petaluma ca 94952"], ["lat", "38.2429345"], ["lon", "-122.6317334"], ["created_at", "2015-08-10 15:56:24.119161"], ["updated_at", "2015-08-10 15:56:24.119161"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pico rivera skatepark"], ["address", "6016 rosemead blvd pico rivera ca 90660"], ["lat", "33.9909681"], ["lon", "-118.0899955"], ["created_at", "2015-08-10 15:56:24.419358"], ["updated_at", "2015-08-10 15:56:24.419358"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "piedmont skatepark"], ["address", "moraga ave and red rock rd piedmont ca 94618"], ["lat", "37.83065029999999"], ["lon", "-122.2287981"], ["created_at", "2015-08-10 15:56:24.777019"], ["updated_at", "2015-08-10 15:56:24.777019"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "placerville"], ["address", "216 armory rd placerville ca 95667"], ["lat", "38.7259263"], ["lon", "-120.8346795"], ["created_at", "2015-08-10 15:56:25.080779"], ["updated_at", "2015-08-10 15:56:25.080779"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "pleasanton skatepark"], ["address", "hopyard road and parkside drive pleasanton ca 94588"], ["lat", "37.6778575"], ["lon", "-121.8999611"], ["created_at", "2015-08-10 15:56:25.398405"], ["updated_at", "2015-08-10 15:56:25.398405"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pleasanton skatepark #2"], ["address", "stoneridge dr and johnson dr pleasanton ca 94566"], ["lat", "37.69028309999999"], ["lon", "-121.9146927"], ["created_at", "2015-08-10 15:56:25.696391"], ["updated_at", "2015-08-10 15:56:25.696391"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "nike/la84 skate plaze"], ["address", "10731 laurel canyon blvd. pocoima ca"], ["lat", "34.2646533"], ["lon", "-118.4390678"], ["created_at", "2015-08-10 15:56:26.009278"], ["updated_at", "2015-08-10 15:56:26.009278"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "palomares skatepark"], ["address", "499 e. arrow hwy. pomona ca 91767"], ["lat", "34.0900866"], ["lon", "-117.7424914"], ["created_at", "2015-08-10 15:56:26.312456"], ["updated_at", "2015-08-10 15:56:26.312456"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "martin luther king skatepark"], ["address", "e. lexington and white ave pomona ca 91766"], ["lat", "34.0367099"], ["lon", "-117.758126"], ["created_at", "2015-08-10 15:56:26.613185"], ["updated_at", "2015-08-10 15:56:26.613185"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "porterville"], ["address", "1501 west henderson ave porterville ca 93257"], ["lat", "36.0802922"], ["lon", "-119.050857"], ["created_at", "2015-08-10 15:56:26.919686"], ["updated_at", "2015-08-10 15:56:26.919686"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "poway"], ["address", "13088 bowron rd. poway ca. 92064"], ["lat", "32.9544028"], ["lon", "-117.0452206"], ["created_at", "2015-08-10 15:56:27.225354"], ["updated_at", "2015-08-10 15:56:27.225354"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "poway skatepark"], ["address", "13090 civic center drive poway ca 92064"], ["lat", "32.954758"], ["lon", "-117.0461891"], ["created_at", "2015-08-10 15:56:27.538059"], ["updated_at", "2015-08-10 15:56:27.538059"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mathers skate plaza"], ["address", "3755 schriever ave rancho cordova ca 95655"], ["lat", "38.5711484"], ["lon", "-121.3017764"], ["created_at", "2015-08-10 15:56:27.840749"], ["updated_at", "2015-08-10 15:56:27.840749"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "riverside"], ["address", "4810 pedley road riverside ca 92509"], ["lat", "34.0015872"], ["lon", "-117.4739727"], ["created_at", "2015-08-10 15:56:28.143002"], ["updated_at", "2015-08-10 15:56:28.143002"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "granite skatepark"], ["address", "e. cucamonga ave. sacramento ca 95814"], ["lat", "38.5447748"], ["lon", "-121.408189"], ["created_at", "2015-08-10 15:56:28.439370"], ["updated_at", "2015-08-10 15:56:28.439370"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "san dimas"], ["address", "225 s. cataract ave. san dimas ca"], ["lat", "34.1053682"], ["lon", "-117.8114855"], ["created_at", "2015-08-10 15:56:28.737911"], ["updated_at", "2015-08-10 15:56:28.737911"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "lake cunningham skatepark"], ["address", "2305 s. white rd. san jose ca 95148"], ["lat", "37.3358835"], ["lon", "-121.8015693"], ["created_at", "2015-08-10 15:56:29.045347"], ["updated_at", "2015-08-10 15:56:29.045347"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "santa clarita"], ["address", "20850 centre pointe pkwy santa clarita ca 91350"], ["lat", "34.4131642"], ["lon", "-118.4997283"], ["created_at", "2015-08-10 15:56:29.348969"], ["updated_at", "2015-08-10 15:56:29.348969"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "santa monica"], ["address", "olympic blvd. & 14th st. santa monica ca 90404"], ["lat", "34.019758"], ["lon", "-118.4806377"], ["created_at", "2015-08-10 15:56:29.717137"], ["updated_at", "2015-08-10 15:56:29.717137"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "berry park"], ["address", "s. corner of whitson and 2nd street selma ca 93662"], ["lat", "36.5657587"], ["lon", "-119.6132131"], ["created_at", "2015-08-10 15:56:30.023287"], ["updated_at", "2015-08-10 15:56:30.023287"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "hans christian anderson park"], ["address", "633 chalk hill rd. solvang ca 93463"], ["lat", "34.5998574"], ["lon", "-120.1413841"], ["created_at", "2015-08-10 15:56:30.598867"], ["updated_at", "2015-08-10 15:56:30.598867"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "terramore skatepark"], ["address", "26283 sienna pkwy trabuco orange ca 92692"], ["lat", "33.6147846"], ["lon", "-117.637617"], ["created_at", "2015-08-10 15:56:30.898363"], ["updated_at", "2015-08-10 15:56:30.898363"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "tulare"], ["address", "tulare & i st. tulare ca"], ["lat", "36.2076082"], ["lon", "-119.3492522"], ["created_at", "2015-08-10 15:56:31.200440"], ["updated_at", "2015-08-10 15:56:31.200440"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "upland"], ["address", "1323 e. san bernardino rd. upland ca. 91786"], ["lat", "34.1029603"], ["lon", "-117.6325991"], ["created_at", "2015-08-10 15:56:31.506198"], ["updated_at", "2015-08-10 15:56:31.506198"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "venice"], ["address", "1800 ocean front walk venice beach ca"], ["lat", "33.9854876"], ["lon", "-118.4726335"], ["created_at", "2015-08-10 15:56:31.832858"], ["updated_at", "2015-08-10 15:56:31.832858"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "liberty skatepark"], ["address", "13900 monroe st. westminster ca 92683"], ["lat", "33.76064849999999"], ["lon", "-117.9854107"], ["created_at", "2015-08-10 15:56:32.147656"], ["updated_at", "2015-08-10 15:56:32.147656"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "whittier"], ["address", "7630 washington ave whittier ca 90602"], ["lat", "33.9729548"], ["lon", "-118.0347056"], ["created_at", "2015-08-10 15:56:32.462549"], ["updated_at", "2015-08-10 15:56:32.462549"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "adams"], ["address", "morrison st & commercial st adams or 97810"], ["lat", "45.76877349999999"], ["lon", "-118.5643877"], ["created_at", "2015-08-10 15:56:32.757830"], ["updated_at", "2015-08-10 15:56:32.757830"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "albany"], ["address", "1375 se 6th ave albany or 97321"], ["lat", "44.6351395"], ["lon", "-123.087856"], ["created_at", "2015-08-10 15:56:33.064355"], ["updated_at", "2015-08-10 15:56:33.064355"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "ashland skatepark"], ["address", "w hersey st & water st ashland or 97520"], ["lat", "42.2021745"], ["lon", "-122.7127324"], ["created_at", "2015-08-10 15:56:33.364203"], ["updated_at", "2015-08-10 15:56:33.364203"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "tapiola park"], ["address", "900 w marine dr. astoria or 97103"], ["lat", "46.1770645"], ["lon", "-123.852463"], ["created_at", "2015-08-10 15:56:33.667306"], ["updated_at", "2015-08-10 15:56:33.667306"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "athena"], ["address", "e main st & s 1st st athena or 97813"], ["lat", "45.8117361"], ["lon", "-118.4934666"], ["created_at", "2015-08-10 15:56:33.995762"], ["updated_at", "2015-08-10 15:56:33.995762"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "sam-o skate park"], ["address", "500 baker st baker city or 97814"], ["lat", "44.7795152"], ["lon", "-117.8129923"], ["created_at", "2015-08-10 15:56:34.299995"], ["updated_at", "2015-08-10 15:56:34.299995"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "bay city"], ["address", "4th st. and a st. bay city or 97107"], ["lat", "45.5253044"], ["lon", "-123.8901948"], ["created_at", "2015-08-10 15:56:34.906902"], ["updated_at", "2015-08-10 15:56:34.906902"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "tualatin hills park"], ["address", "50 nw 158th ave beaverton or 97006"], ["lat", "45.5184814"], ["lon", "-122.8387356"], ["created_at", "2015-08-10 15:56:35.203076"], ["updated_at", "2015-08-10 15:56:35.203076"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "truck stop skate park"], ["address", "1307 northeast 1st street bend or 97701"], ["lat", "44.0630455"], ["lon", "-121.3055705"], ["created_at", "2015-08-10 15:56:35.538844"], ["updated_at", "2015-08-10 15:56:35.538844"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "ponderosa park"], ["address", "225 se 15th st bend or 97702"], ["lat", "44.0477864"], ["lon", "-121.2834381"], ["created_at", "2015-08-10 15:56:35.851275"], ["updated_at", "2015-08-10 15:56:35.851275"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "boardman"], ["address", "198 3rd st ne boardman or 97818"], ["lat", "45.8402387"], ["lon", "-119.6903875"], ["created_at", "2015-08-10 15:56:36.146793"], ["updated_at", "2015-08-10 15:56:36.146793"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "brookings"], ["address", "hassett st. & 3rd st. brookings or 97415"], ["lat", "42.0627467"], ["lon", "-124.2932018"], ["created_at", "2015-08-10 15:56:36.449380"], ["updated_at", "2015-08-10 15:56:36.449380"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "canby"], ["address", "1175 nw 3rd ave canby or 97013"], ["lat", "45.2583418"], ["lon", "-122.7081036"], ["created_at", "2015-08-10 15:56:36.752258"], ["updated_at", "2015-08-10 15:56:36.752258"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "cannon beach"], ["address", "e gower ave & evergreen ave cannon beach or 97145"], ["lat", "45.8900118"], ["lon", "-123.9613158"], ["created_at", "2015-08-10 15:56:37.055430"], ["updated_at", "2015-08-10 15:56:37.055430"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "joel tanzi skatepark"], ["address", "403 s 4th st central point or 97502"], ["lat", "42.3720976"], ["lon", "-122.9111598"], ["created_at", "2015-08-10 15:56:37.377066"], ["updated_at", "2015-08-10 15:56:37.377066"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "clatskanie"], ["address", "ne 5th st & park st clatskanie or 97016"], ["lat", "46.105407"], ["lon", "-123.1997478"], ["created_at", "2015-08-10 15:56:37.677518"], ["updated_at", "2015-08-10 15:56:37.677518"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "mingus park"], ["address", "n 8th st & commercial ave coos bay or 97420"], ["lat", "43.3689309"], ["lon", "-124.2200567"], ["created_at", "2015-08-10 15:56:37.993755"], ["updated_at", "2015-08-10 15:56:37.993755"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "eric scott mckinley skatepark"], ["address", "junction of highway 30 99 and 20 corvallis or 97333"], ["lat", "44.6464247"], ["lon", "-123.9200234"], ["created_at", "2015-08-10 15:56:38.308845"], ["updated_at", "2015-08-10 15:56:38.308845"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cottage grove"], ["address", "s gateway blvd & taylor ave cottage grove or 97424"], ["lat", "43.7868666"], ["lon", "-123.054039"], ["created_at", "2015-08-10 15:56:38.612419"], ["updated_at", "2015-08-10 15:56:38.612419"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dallas"], ["address", "se walnut ave & se lacreole dr dallas or 97338"], ["lat", "44.9205005"], ["lon", "-123.2996892"], ["created_at", "2015-08-10 15:56:38.914568"], ["updated_at", "2015-08-10 15:56:38.914568"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "donald"], ["address", "main st. ne and matthieu st. donald or 97020"], ["lat", "45.2223145"], ["lon", "-122.8383265"], ["created_at", "2015-08-10 15:56:39.204255"], ["updated_at", "2015-08-10 15:56:39.204255"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "echo"], ["address", "n front st and main st. echo or 97826"], ["lat", "45.7423388"], ["lon", "-119.1973243"], ["created_at", "2015-08-10 15:56:39.502662"], ["updated_at", "2015-08-10 15:56:39.502662"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "emerald skatepark"], ["address", "1400 lake dr eugene or 97404"], ["lat", "44.08513900000001"], ["lon", "-123.1374104"], ["created_at", "2015-08-10 15:56:39.796412"], ["updated_at", "2015-08-10 15:56:39.796412"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "amazon park"], ["address", "2580 hilyard st eugene or 97405"], ["lat", "44.029226"], ["lon", "-123.084838"], ["created_at", "2015-08-10 15:56:40.136959"], ["updated_at", "2015-08-10 15:56:40.136959"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "trainsong skatepark"], ["address", "2771 edison st eugene or 97402"], ["lat", "44.06797419999999"], ["lon", "-123.1377955"], ["created_at", "2015-08-10 15:56:40.439992"], ["updated_at", "2015-08-10 15:56:40.439992"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "churchil skatepark"], ["address", "bailey hill rd & westleigh st eugene or 97405"], ["lat", "44.0379009"], ["lon", "-123.150479"], ["created_at", "2015-08-10 15:56:40.739714"], ["updated_at", "2015-08-10 15:56:40.739714"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "cal young park"], ["address", "gilham rd & crescent ave eugene or 97408"], ["lat", "44.0929319"], ["lon", "-123.0809474"], ["created_at", "2015-08-10 15:56:41.032193"], ["updated_at", "2015-08-10 15:56:41.032193"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "bethel skatepark"], ["address", "jeffrey way & haviture way eugene or 97402"], ["lat", "44.07987019999999"], ["lon", "-123.198301"], ["created_at", "2015-08-10 15:56:41.330039"], ["updated_at", "2015-08-10 15:56:41.330039"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "miller park"], ["address", "oak st & 18th st florence or 97439"], ["lat", "43.9824878"], ["lon", "-124.1012617"], ["created_at", "2015-08-10 15:56:41.635311"], ["updated_at", "2015-08-10 15:56:41.635311"]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "lincoln park"], ["address", "2725 main st forest grove or 97116"], ["lat", "45.5284292"], ["lon", "-123.1118951"], ["created_at", "2015-08-10 15:56:41.941464"], ["updated_at", "2015-08-10 15:56:41.941464"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "bullfrog skate park"], ["address", "hwy 101 and ellensburg ave gold beach or 97444"], ["lat", "42.3962642"], ["lon", "-124.4226118"], ["created_at", "2015-08-10 15:56:42.260649"], ["updated_at", "2015-08-10 15:56:42.260649"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "grants pass"], ["address", "820 se m st grants pass or 97526"], ["lat", "42.4318"], ["lon", "-123.32075"], ["created_at", "2015-08-10 15:56:42.563089"], ["updated_at", "2015-08-10 15:56:42.563089"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "gresham"], ["address", "219 s main ave. gresham or 97080"], ["lat", "45.4971491"], ["lon", "-122.4297755"], ["created_at", "2015-08-10 15:56:42.862705"], ["updated_at", "2015-08-10 15:56:42.862705"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "harrisburg"], ["address", "530 smith st. harrisburg or 97446"], ["lat", "44.27229880000001"], ["lon", "-123.1673463"], ["created_at", "2015-08-10 15:56:43.157260"], ["updated_at", "2015-08-10 15:56:43.157260"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "reedville park"], ["address", "sw cornelius pass rd & sw frances st hillsboro or 97123"], ["lat", "45.5086727"], ["lon", "-122.9020476"], ["created_at", "2015-08-10 15:56:43.461673"], ["updated_at", "2015-08-10 15:56:43.461673"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "hood river"], ["address", "wasco ave & n 20th st. hood river or 97031"], ["lat", "45.7113844"], ["lon", "-121.5317622"], ["created_at", "2015-08-10 15:56:43.769087"], ["updated_at", "2015-08-10 15:56:43.769087"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "barendse park"], ["address", "5th st & kari ln hubbard or 97032"], ["lat", "45.18782789999999"], ["lon", "-122.8048007"], ["created_at", "2015-08-10 15:56:44.081582"], ["updated_at", "2015-08-10 15:56:44.081582"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "don baxter skatepark"], ["address", "main ave & 6th st ne irrigon or 97844"], ["lat", "45.8960314"], ["lon", "-119.4939216"], ["created_at", "2015-08-10 15:56:44.382767"], ["updated_at", "2015-08-10 15:56:44.382767"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "jacksonvile"], ["address", "n oregon st & w c st jacksonville or 97530"], ["lat", "42.3151642"], ["lon", "-122.9682306"], ["created_at", "2015-08-10 15:56:44.679014"], ["updated_at", "2015-08-10 15:56:44.679014"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "smokey gibson memorial park"], ["address", "ne 7th ave john day or 97845"], ["lat", "44.4212737"], ["lon", "-118.9485084"], ["created_at", "2015-08-10 15:56:44.976050"], ["updated_at", "2015-08-10 15:56:44.976050"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "carlson skatepark"], ["address", "930 chemawa rd ne keizer or 97303"], ["lat", "44.9960949"], ["lon", "-123.0204795"], ["created_at", "2015-08-10 15:56:45.278139"], ["updated_at", "2015-08-10 15:56:45.278139"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "klamath falls"], ["address", "4500 foothills blvd. klamath falls or"], ["lat", "42.22439869999999"], ["lon", "-121.7289308"], ["created_at", "2015-08-10 15:56:45.570376"], ["updated_at", "2015-08-10 15:56:45.570376"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pioneer park"], ["address", "oak st & palmer ave la grande or 97850"], ["lat", "45.3330511"], ["lon", "-118.102868"], ["created_at", "2015-08-10 15:56:45.873701"], ["updated_at", "2015-08-10 15:56:45.873701"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "lake oswego"], ["address", "pilkington rd & willow ln lake oswego or 97035"], ["lat", "45.3990565"], ["lon", "-122.7334393"], ["created_at", "2015-08-10 15:56:46.177283"], ["updated_at", "2015-08-10 15:56:46.177283"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "lincoln city"], ["address", "ne 23rd st. lincoln city or 97367"], ["lat", "44.98226529999999"], ["lon", "-124.0034014"], ["created_at", "2015-08-10 15:56:46.485273"], ["updated_at", "2015-08-10 15:56:46.485273"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "madras"], ["address", "sw h st. & sw lincoln st. madras or 97741"], ["lat", "44.6276164"], ["lon", "-121.1364091"], ["created_at", "2015-08-10 15:56:46.788510"], ["updated_at", "2015-08-10 15:56:46.788510"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "joe dancer park"], ["address", "1650 se brooks street mcminnville oregon 97128"], ["lat", "45.2092638"], ["lon", "-123.1799323"], ["created_at", "2015-08-10 15:56:47.091204"], ["updated_at", "2015-08-10 15:56:47.091204"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "bear creek saktepark"], ["address", "1520 siskiyou blvd medford or 97504"], ["lat", "42.3212586"], ["lon", "-122.8539261"], ["created_at", "2015-08-10 15:56:47.383077"], ["updated_at", "2015-08-10 15:56:47.383077"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "milton freewater"], ["address", "nw 8th ave & robbins st milton-freewater umatilla oregon 97862"], ["lat", "45.9439354"], ["lon", "-118.3962576"], ["created_at", "2015-08-10 15:56:47.689077"], ["updated_at", "2015-08-10 15:56:47.689077"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "molalla"], ["address", "209 kennel st molalla or 97038"], ["lat", "45.149106"], ["lon", "-122.578599"], ["created_at", "2015-08-10 15:56:47.975387"], ["updated_at", "2015-08-10 15:56:47.975387"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "monmouth/independence"], ["address", "monmouth independence hwy & n hogan rd monmouth or 97361"], ["lat", "44.8510394"], ["lon", "-123.2194221"], ["created_at", "2015-08-10 15:56:48.272422"], ["updated_at", "2015-08-10 15:56:48.272422"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "millsite park"], ["address", "113 ne oak st myrtle creek or 97457"], ["lat", "43.0249671"], ["lon", "-123.287893"], ["created_at", "2015-08-10 15:56:48.575353"], ["updated_at", "2015-08-10 15:56:48.575353"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "myrtle point"], ["address", "spruce st & 1st st myrtle point or 97458"], ["lat", "43.0655587"], ["lon", "-124.1457376"], ["created_at", "2015-08-10 15:56:48.877592"], ["updated_at", "2015-08-10 15:56:48.877592"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "nehalem"], ["address", "36155 9th st nehalem or 97131 usa"], ["lat", "45.719125"], ["lon", "-123.895697"], ["created_at", "2015-08-10 15:56:49.187335"], ["updated_at", "2015-08-10 15:56:49.187335"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "ewing young park"], ["address", "1201 s blaine st. newberg or 97132"], ["lat", "45.2905253"], ["lon", "-122.9767608"], ["created_at", "2015-08-10 15:56:49.482165"], ["updated_at", "2015-08-10 15:56:49.482165"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "newport"], ["address", "nw spring st & nw 8th st newport or 97365"], ["lat", "44.6419576"], ["lon", "-124.059448"], ["created_at", "2015-08-10 15:56:49.803032"], ["updated_at", "2015-08-10 15:56:49.803032"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "wayne c. king memorial skatepark"], ["address", "790 sw 3rd ave ontario oregon 97914 usa"], ["lat", "44.025488"], ["lon", "-116.973896"], ["created_at", "2015-08-10 15:56:50.126420"], ["updated_at", "2015-08-10 15:56:50.126420"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "oregon city"], ["address", "1955 clackamette drive oregon city or 97045"], ["lat", "45.3711269"], ["lon", "-122.603302"], ["created_at", "2015-08-10 15:56:50.429381"], ["updated_at", "2015-08-10 15:56:50.429381"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "rudy rada skatepark"], ["address", "us 30 and or 57 pendleton or 97801"], ["lat", "45.6728594"], ["lon", "-118.7869248"], ["created_at", "2015-08-10 15:56:50.761390"], ["updated_at", "2015-08-10 15:56:50.761390"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "philomath"], ["address", "2054 applegate street philomath or 97370"], ["lat", "44.537571"], ["lon", "-123.355261"], ["created_at", "2015-08-10 15:56:51.055940"], ["updated_at", "2015-08-10 15:56:51.055940"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "buffington park"], ["address", "14th st and arizona st port orford or 97465"], ["lat", "42.7496441"], ["lon", "-124.5004222"], ["created_at", "2015-08-10 15:56:51.496858"], ["updated_at", "2015-08-10 15:56:51.496858"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "ed benedict skate plaza"], ["address", "10000 southeast powell blvd. portland or 97204"], ["lat", "45.49610819999999"], ["lon", "-122.5605631"], ["created_at", "2015-08-10 15:56:51.801184"], ["updated_at", "2015-08-10 15:56:51.801184"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "pier park"], ["address", "n hudson st and n bruce ave portland or 97203"], ["lat", "45.6023846"], ["lon", "-122.7601817"], ["created_at", "2015-08-10 15:56:52.102835"], ["updated_at", "2015-08-10 15:56:52.102835"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "glenhaven"], ["address", "ne 82nd avenue and siskiyou street portland or 97213"], ["lat", "45.54451580000001"], ["lon", "-122.5788135"], ["created_at", "2015-08-10 15:56:52.404485"], ["updated_at", "2015-08-10 15:56:52.404485"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "brooklyn street spot"], ["address", "se brooklyn st & se 16th ave portland or 97202"], ["lat", "45.5013623"], ["lon", "-122.649654"], ["created_at", "2015-08-10 15:56:52.706626"], ["updated_at", "2015-08-10 15:56:52.706626"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "holly farm"], ["address", "sw capitol hwy & sw comus st portland or 97219"], ["lat", "45.4467901"], ["lon", "-122.7257"], ["created_at", "2015-08-10 15:56:52.998347"], ["updated_at", "2015-08-10 15:56:52.998347"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "gabriel park"], ["address", "sw vermont st & sw 45th ave portland or 97219"], ["lat", "45.476242"], ["lon", "-122.7231542"], ["created_at", "2015-08-10 15:56:53.298599"], ["updated_at", "2015-08-10 15:56:53.298599"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "prineville"], ["address", "ne juniper st & ne knowledge st prineville or 97754"], ["lat", "44.3018782"], ["lon", "-120.8342323"], ["created_at", "2015-08-10 15:56:53.606301"], ["updated_at", "2015-08-10 15:56:53.606301"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "rainier"], ["address", "w a st & w 6th st rainier or 97048"], ["lat", "46.0888832"], ["lon", "-122.9300196"], ["created_at", "2015-08-10 15:56:53.906243"], ["updated_at", "2015-08-10 15:56:53.906243"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "redmond"], ["address", "w antler ave & sw 15th st redmond or 97756"], ["lat", "44.2763717"], ["lon", "-121.1840289"], ["created_at", "2015-08-10 15:56:54.210372"], ["updated_at", "2015-08-10 15:56:54.210372"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "reedsport"], ["address", "u.s. 101 & s 21st st reedsport or 97467"], ["lat", "43.6954717"], ["lon", "-124.1215461"], ["created_at", "2015-08-10 15:56:54.891193"], ["updated_at", "2015-08-10 15:56:54.891193"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "stewart park"], ["address", "duck pond st roseburg or 97471"], ["lat", "43.2294182"], ["lon", "-123.369353"], ["created_at", "2015-08-10 15:56:55.182282"], ["updated_at", "2015-08-10 15:56:55.182282"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "marion square park"], ["address", "commercial st ne & marion st ne salem or 97301"], ["lat", "44.9448185"], ["lon", "-123.0382599"], ["created_at", "2015-08-10 15:56:55.499243"], ["updated_at", "2015-08-10 15:56:55.499243"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "sandy"], ["address", "hood st & se meinig ave sandy or 97055"], ["lat", "45.3986976"], ["lon", "-122.2597353"], ["created_at", "2015-08-10 15:56:55.797690"], ["updated_at", "2015-08-10 15:56:55.797690"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "scappoose"], ["address", "e columbia ave & se 2nd st scappoose or 97056"], ["lat", "45.75769"], ["lon", "-122.8764448"], ["created_at", "2015-08-10 15:56:56.104211"], ["updated_at", "2015-08-10 15:56:56.104211"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "skate 'n' ride park"], ["address", "1140 broadway st seaside or 97138"], ["lat", "45.993517"], ["lon", "-123.917756"], ["created_at", "2015-08-10 15:56:56.410452"], ["updated_at", "2015-08-10 15:56:56.410452"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "wayne potter memorial skatepark"], ["address", "ne yamhill st & ne box st sheridan or 97378"], ["lat", "45.0994372"], ["lon", "-123.3877375"], ["created_at", "2015-08-10 15:56:56.731146"], ["updated_at", "2015-08-10 15:56:56.731146"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "siletz"], ["address", "484 sw swan ave siletz or 97380"], ["lat", "44.7202932"], ["lon", "-123.9198039"], ["created_at", "2015-08-10 15:56:57.029526"], ["updated_at", "2015-08-10 15:56:57.029526"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "willamalane skatepark"], ["address", "1276 g st springfield or 97477"], ["lat", "44.052891"], ["lon", "-123.0071123"], ["created_at", "2015-08-10 15:56:57.338961"], ["updated_at", "2015-08-10 15:56:57.338961"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "mccormick park"], ["address", "375 s 18th st st helens or 97051"], ["lat", "45.8550063"], ["lon", "-122.8148094"], ["created_at", "2015-08-10 15:56:57.643304"], ["updated_at", "2015-08-10 15:56:57.643304"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "sweet home"], ["address", "1920 long st sweet home or 97386"], ["lat", "44.3982743"], ["lon", "-122.7216728"], ["created_at", "2015-08-10 15:56:57.938676"], ["updated_at", "2015-08-10 15:56:57.938676"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "old town skatepark"], ["address", "e main st & john st talent or 97540"], ["lat", "42.2441789"], ["lon", "-122.788795"], ["created_at", "2015-08-10 15:56:58.236881"], ["updated_at", "2015-08-10 15:56:58.236881"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "thompson park"], ["address", "602 w 2nd st the dalles or 97058"], ["lat", "45.6045184"], ["lon", "-121.1889524"], ["created_at", "2015-08-10 15:56:58.534606"], ["updated_at", "2015-08-10 15:56:58.534606"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "jim griffith memorial skatepark"], ["address", "13125 sw hall blvd tigard oregon 97223"], ["lat", "45.4251662"], ["lon", "-122.7670533"], ["created_at", "2015-08-10 15:56:58.876423"], ["updated_at", "2015-08-10 15:56:58.876423"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "toledo"], ["address", "nw a st & nw 7th st toledo or 97391"], ["lat", "44.6255284"], ["lon", "-123.9393069"], ["created_at", "2015-08-10 15:56:59.186944"], ["updated_at", "2015-08-10 15:56:59.186944"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "tualatin"], ["address", "8515 sw tualatin rd tualatin or 97062"], ["lat", "45.385964"], ["lon", "-122.763788"], ["created_at", "2015-08-10 15:56:59.486096"], ["updated_at", "2015-08-10 15:56:59.486096"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "territorial park"], ["address", "territorial rd & hunter rd veneta or 97487"], ["lat", "44.0488489"], ["lon", "-123.3515281"], ["created_at", "2015-08-10 15:57:00.096403"], ["updated_at", "2015-08-10 15:57:00.096403"]]
+  [1m[36m (1.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "waldport"], ["address", "s crestline dr & se salmon st waldport or 97394"], ["lat", "44.4180019"], ["lon", "-124.0641826"], ["created_at", "2015-08-10 15:57:00.406272"], ["updated_at", "2015-08-10 15:57:00.406272"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "robinwood"], ["address", "3600 fairview way west linn or 97068"], ["lat", "45.3926569"], ["lon", "-122.642611"], ["created_at", "2015-08-10 15:57:00.729307"], ["updated_at", "2015-08-10 15:57:00.729307"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "west linn"], ["address", "parker rd & wild rose dr west linn or 97068"], ["lat", "45.364721"], ["lon", "-122.6414864"], ["created_at", "2015-08-10 15:57:01.038239"], ["updated_at", "2015-08-10 15:57:01.038239"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "oaken hills memorial park"], ["address", "417 ne oaken hills dr willamina or 97396"], ["lat", "45.082147"], ["lon", "-123.480331"], ["created_at", "2015-08-10 15:57:01.337956"], ["updated_at", "2015-08-10 15:57:01.337956"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "wilsonville"], ["address", "8100 sw wilsonville road wilsonville oregon 97070"], ["lat", "45.2991512"], ["lon", "-122.7592984"], ["created_at", "2015-08-10 15:57:01.632426"], ["updated_at", "2015-08-10 15:57:01.632426"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "riverbend park"], ["address", "31 thompson ave winston or 97496"], ["lat", "43.113592"], ["lon", "-123.414319"], ["created_at", "2015-08-10 15:57:01.925196"], ["updated_at", "2015-08-10 15:57:01.925196"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "lat", "lon", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "richard jennings skaepark"], ["address", "400 s settlemier ave woodburn or 97071"], ["lat", "45.1407033"], ["lon", "-122.8628525"], ["created_at", "2015-08-10 15:57:02.229551"], ["updated_at", "2015-08-10 15:57:02.229551"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mSkatepark Load (2.0ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+
+
+Started GET "/api/skateparks" for ::1 at 2015-08-10 08:58:26 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (10.4ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 107ms (Views: 81.6ms | ActiveRecord: 15.5ms)
+
+
+Started GET "/api/skateparks" for ::1 at 2015-08-10 08:58:29 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.0ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 97ms (Views: 95.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/skateparks/" for ::1 at 2015-08-10 08:58:30 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (3.2ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 127ms (Views: 123.3ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/api/skateparks/" for ::1 at 2015-08-10 08:58:36 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.0ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 144ms (Views: 143.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/skateparks" for ::1 at 2015-08-10 08:58:36 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (2.2ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 158ms (Views: 156.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/skateparks" for ::1 at 2015-08-10 08:58:37 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.4ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 78ms (Views: 76.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/skateparks/2" for ::1 at 2015-08-10 08:59:02 -0700
+Processing by SkateparksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mSkatepark Load (0.5ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 200 OK in 19ms (Views: 1.5ms | ActiveRecord: 0.9ms)
+
+
+Started POST "//api/users/100731061466734742350/authenticate" for ::1 at 2015-08-10 08:59:31 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.ywGhygfCocS8_Q-qMh6-Po-4iMYo2MMtQYeyCQx3nEZ49Nj6aPfuJr8HpTp596LLwNaSXw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0MzkyMjIzNzF9.7ystXROg1IJsUixjSQ11F5mMsSgn8sszHGeZKge7ICc", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1439222401", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "google:100731061466734742350"]]
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 2.1ms)

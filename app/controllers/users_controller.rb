@@ -60,6 +60,8 @@ class UsersController < ApplicationController
         name: params[:name],
         email: params[:email])
 
+      p @new_user
+
       if @new_user.save
         render json: @new_user
       else
