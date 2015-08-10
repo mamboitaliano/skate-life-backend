@@ -31,9 +31,6 @@ class UsersController < ApplicationController
   # end
 
   def authenticate
-    p '*' * 100
-    p params
-    p '*' * 100
     @user = User.where(uid: params[:google][:uid]).first
 
     if @user
