@@ -34,19 +34,13 @@ class UsersController < ApplicationController
     p '*' * 100
     p params
     p '*' * 100
-    @user = User.where(uid: params[:uid]).first
+    @user = User.where(uid: params[:google][:uid]).first
 
-    # if @user
-    #   render json: @user
-    # else
-    #   @new_user = User.new(
-    #     uid: params[:uid],
-    #     name: params[:name],
-    #     email: params[:email])
-
-    #   @new_user.save ? (render json: @new_user) : (render json: {error: 'internal-server-error'}, status: 500})
-    # end
-    save_or_render_error
+    if @user
+      render json: @user
+    else
+      save_user
+    end
   end
 
 
@@ -54,18 +48,15 @@ class UsersController < ApplicationController
 
   private
 
-    def save_or_render_error
-      @new_user = User.new(
-        uid: params[:uid],
-        name: params[:name],
-        email: params[:email])
+    def save_user
 
-      p @new_user
+      @new_user = User.new(
+        uid: params[:google][:id],
+        name: params[:google][:displayName])
 
       if @new_user.save
         render json: @new_user
       else
-        # render json: {error: 'internal-server-error', status: 500})
         render json: {error: 'something went wrong with user'}
       end
     end
