@@ -15,13 +15,13 @@ CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do
         name: park_params[:name],
         address: park_params[:address],
         lat: lat,
-        long: long)
+        lon: long)
     else
       Skatepark.create(
         name: park_params[:city],
         address: park_params[:address],
         lat: lat,
-        long: long)
+        lon: long)
     end
   end
 
