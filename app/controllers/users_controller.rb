@@ -33,6 +33,10 @@ class UsersController < ApplicationController
   def authenticate
     @user = User.where(uid: params[:google][:id]).first
 
+    p '*' * 100
+    p @user
+    p '*' * 100
+    
     if @user
       render json: @user
     else
