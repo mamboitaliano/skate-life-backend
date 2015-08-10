@@ -4,7 +4,7 @@ class CreateSkateparks < ActiveRecord::Migration
       t.string :name
       t.string :address
       t.string :lat
-      t.string :long
+      t.string :lon
       t.integer :fav_count, default: 0
 
       t.timestamps null: false
