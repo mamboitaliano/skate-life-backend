@@ -21,8 +21,8 @@ CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do
   if park_params[:address]
     sleep(0.2)
     lat_long = Geokit::Geocoders::GoogleGeocoder.geocode(park_params[:address]) if park_params[:address]
-    lat = lat_long.match(/Latitude: (.\d+\.\d+)/)[1]
-    long = lat_long.match(/Longitude: (.\d+\.\d+)/)[1]
+    lat = lat_long.to_s.match(/Latitude: (.\d+\.\d+)/)[1]
+    long = lat_long.to_s.match(/Longitude: (.\d+\.\d+)/)[1]
 
     if park_params[:name]
       Skatepark.create(
