@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @user = User.where(uid: params[:id]).first
+    @user = User.find(params[:id])
     render json: @user.skateparks
   end
 
