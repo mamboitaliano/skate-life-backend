@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :uid
       t.string :name
+      t.integer :current_park
       # get rid of this shit
       t.string :email
 

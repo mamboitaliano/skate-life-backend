@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 20150807030335) do
   create_table "favorites", force: :cascade do |t|
     t.integer  "skatepark_id"
     t.integer  "user_id"
-    t.boolean  "attending",    default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "favorites", ["skatepark_id"], name: "index_favorites_on_skatepark_id", using: :btree
@@ -40,9 +39,10 @@ ActiveRecord::Schema.define(version: 20150807030335) do
   create_table "users", force: :cascade do |t|
     t.string   "uid"
     t.string   "name"
+    t.integer  "current_park"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
