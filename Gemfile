@@ -7,4 +7,5 @@ gem 'rails-api'
 gem 'puma'
 gem 'pg'
 gem 'geokit'
+gem 'nokogiri'
 gem 'rails_12factor', group: :production

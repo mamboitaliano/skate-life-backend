@@ -115,6 +115,7 @@ PLATFORMS
 
 DEPENDENCIES
   geokit
+  nokogiri
   pg
   puma
   rails (= 4.2.0)
