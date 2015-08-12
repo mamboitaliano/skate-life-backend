@@ -12,5 +12,9 @@ Rails.application.routes.draw do
     post '/users/:id/favorites/:skatepark_id' => 'favorites#create'
     post '/users/:id/authenticate' => 'users#authenticate'
 
+    # attend and leave skateparks
+    post '/users/:id/skateparks/:skatepark_id' => 'users#attend_park'
+    delete '/users/:id/skateparks/:skatepark_id' => 'users#leave_park'
+
   end
 end

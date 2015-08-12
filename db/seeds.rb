@@ -55,16 +55,20 @@ require 'nokogiri'
 end
 
 
+# # LOCAL SEED
+# CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do |row|
+#   park_params = Hash[row]
+# >>>>>>> 8103494f378a8f6d43525a1ebe0b1e2146edd9b0
 
-
-
-
-# users = ['Harvey', 'Ian', 'Shabazz', 'Chris']
-# users.each {|user| User.create(name: user, email:"#{user}@gmail.com")}
-
-
-# 3.times do |i|
-#   3.times do |n|
-#     Favorite.create(skatepark_id: (n+1), user_id: (i+1))
+  
+#   if park_params[:name]
+#     Skatepark.create(
+#       name: park_params[:name],
+#       address: park_params[:address])
+#   else
+#     Skatepark.create(
+#       name: park_params[:city],
+#       address: park_params[:address])  
 #   end
+
 # end
