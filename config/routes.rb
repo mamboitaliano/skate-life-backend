@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     # create a favorite, maybe make this more restful
     post '/users/:id/favorites/:skatepark_id' => 'favorites#create'
     post '/users/:id/authenticate' => 'users#authenticate'
+    post '/users/:id/favorites/:skatepark_id/attend' => 'favorites#attend'
+    delete '/users/:id/favorites/:skatepark_id/unattend' => 'favorites#unattend'
 
   end
 end

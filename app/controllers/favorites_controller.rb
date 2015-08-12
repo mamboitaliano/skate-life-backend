@@ -11,4 +11,32 @@ class FavoritesController < ApplicationController
     render nothing: true
   end
 
+  def attend
+  	@favorite = Favorite.where(
+  		skatepark_id: params[:skatepark_id],
+  		user_id: params[:id]).first
+
+  	if @favorite
+  		@favorite.update_attributes(attending: true)
+  	else
+  		Favorite.create(
+  			skatepark_id: params[:skatepark_id],
+  			user_id: params[:id],
+  			attending: true)
+  	end
+
+  	render nothing: true
+
+  end
+
+
+  def unattend
+  	@favorite = Favorite.where(
+  		skatepark_id: params[:skatepark_id],
+  		user_id: params[:id]).first
+
+ 		@favorite.update_attributes(attending: false) if @favorite
+
+ 		render nothing: true
+  end
 end
