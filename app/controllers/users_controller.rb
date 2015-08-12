@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # render json: @user
     render json: {user: @user, skateparks: @user.skateparks}
   end
 
@@ -42,6 +41,19 @@ class UsersController < ApplicationController
     else
       save_user
     end
+  end
+
+  def attend_park
+    @user = User.find(params[:id])
+    @skatepark = Skatepark.find(params[:skatepark_id])
+
+    @user.update_attributes(current_park: @skatepark.id)
+    render nothing: true
+  end
+
+  def leave_park
+    # FUQBOI
+    @user = User.find(params[:id]).update_attributes(current_park: nil)
   end
 
 
