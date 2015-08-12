@@ -14686,3 +14686,51 @@ ORDER BY c.conname
   [1m[35m (0.1ms)[0m  BEGIN
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "skateparks" ("name", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "richard jennings skaepark"], ["address", "400 s settlemier ave woodburn or 97071"], ["created_at", "2015-08-12 21:53:30.319438"], ["updated_at", "2015-08-12 21:53:30.319438"]]
   [1m[35m (0.4ms)[0m  COMMIT
+
+
+Started POST "/api/users/" for ::1 at 2015-08-12 14:54:55 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"FUCBOI"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "FUCBOI"], ["created_at", "2015-08-12 21:54:56.190424"], ["updated_at", "2015-08-12 21:54:56.190424"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Completed 200 OK in 24ms (Views: 0.4ms | ActiveRecord: 4.4ms)
+
+
+Started POST "/api/users/1/skateparks/1" for ::1 at 2015-08-12 14:55:15 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.5ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["current_park", 1], ["updated_at", "2015-08-12 21:55:15.946113"], ["id", 1]]
+  [1m[36m (15.6ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 49ms (Views: 7.8ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/api/users/1" for ::1 at 2015-08-12 14:55:29 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.7ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 36ms (Views: 10.3ms | ActiveRecord: 1.9ms)
+
+
+Started DELETE "/api/users/1/skateparks/1" for ::1 at 2015-08-12 14:55:44 -0700
+Processing by UsersController#leave_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["current_park", nil], ["updated_at", "2015-08-12 21:55:44.398435"], ["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 6ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/api/users/1" for ::1 at 2015-08-12 14:55:49 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.4ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.7ms)
