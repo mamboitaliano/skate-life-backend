@@ -29283,3 +29283,17 @@ Processing by SkateparksController#attendee_count as */*
   Parameters: {"id"=>"1"}
   [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."current_park" = $1  [["current_park", 1]]
 Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/skateparks/1/attendee_count" for ::1 at 2015-08-13 09:46:11 -0700
+Processing by SkateparksController#attendee_count as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."current_park" = $1[0m  [["current_park", 1]]
+Completed 200 OK in 15ms (Views: 6.5ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/skateparks/1/attendees" for ::1 at 2015-08-13 09:47:08 -0700
+Processing by SkateparksController#attendees as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."current_park" = $1  [["current_park", 1]]
+Completed 200 OK in 12ms (Views: 4.9ms | ActiveRecord: 2.1ms)
