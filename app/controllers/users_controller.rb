@@ -48,7 +48,8 @@ class UsersController < ApplicationController
     @skatepark = Skatepark.find(params[:skatepark_id])
 
     @user.update_attributes(current_park: @skatepark.id)
-    render nothing: true
+    # render nothing: true
+    render json: @skatepark
   end
 
   def leave_park
