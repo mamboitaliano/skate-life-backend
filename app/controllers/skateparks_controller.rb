@@ -10,5 +10,9 @@ class SkateparksController < ApplicationController
     render json: @skatepark
   end
 
+  def attendees
+  	render json: User.where(current_park: params[:id])
+  end
+
 
 end

@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     post '/users/:id/skateparks/:skatepark_id' => 'users#attend_park'
     delete '/users/:id/skateparks/:skatepark_id' => 'users#leave_park'
 
+    get '/skateparks/:id/attendees' => 'skateparks#attendees'
   end
 end
