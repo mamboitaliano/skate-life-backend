@@ -1,27 +1,9 @@
-# skate-life (Back-End)
-totally sweet skate app
-Link for Back-End repo here.
+# Skate Life (Back-End)
+This is the repo for the back-end of Skate Life.
 
-## Team Members
-- Chris "Swag Daddy Supreme" Scott
-- Shahab "Shabaz" Amin
-- Ian "Banner" Harris
-- Harvey "F'in Toad" Ngo
+View the repo for the client-side [here](https://github.com/hdngo/Skate-Life-Client).
 
-## Git Workflow 
-# Separate branch for each feature!
-- git status
--- Make sure you recognize each file
-- git add --patch
--- Make sure you made each change! fercereals (list lines, too)
-- git commit 
--- BE descriptive, VERY f'in descriptive
-- git co master
-- git pull
-- git co <branchname>
-- git push origin <branch>
-- Put in pull request
--- AND THEN GET A TEAMMATE TO VALIDATE AND MERGE ASAP
+Go to the Rails API Routes by prepending them with http://skate-life-backend.herokuapp.com
 
 ## Rails API routes
 - GET   /api/skateparks
