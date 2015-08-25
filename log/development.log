@@ -30769,3 +30769,879 @@ Processing by UsersController#leave_park as */*
   [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["current_park", nil], ["updated_at", "2015-08-25 16:42:53.612416"], ["id", 1]]
   [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
 Completed 200 OK in 9ms (ActiveRecord: 6.3ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 09:44:09 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", 137], ["updated_at", "2015-08-25 16:44:09.793993"], ["id", 1]]
+  [1m[35m (0.9ms)[0m  COMMIT
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started DELETE "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 09:44:10 -0700
+Processing by UsersController#leave_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", nil], ["updated_at", "2015-08-25 16:44:10.436129"], ["id", 1]]
+  [1m[35m (1.5ms)[0m  COMMIT
+Completed 200 OK in 5ms (ActiveRecord: 2.1ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 09:44:18 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gH7m9jefgdFqri1YyKK4j5UrxL9y-LkDT31jA7_3FR3Eiqz6qbzeFkdQWQpZ1Vod3aCHA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjEwNTh9.bEIAgPTUwQKmZmXJbRMz2xbJnulVCtPonCbAULQhjpM", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502729058", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.5ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 09:44:19 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 86ms (Views: 83.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 09:44:27 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.3ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 94ms (Views: 92.3ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:08:12 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGsOWajfF7Faczv2ymO7AQ82ToihXWW88PgYp9uWZ6TwzSz9WtBfMeiDuIbU3eFqL60-Q", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI0OTN9.Ulrjc3wnTjS4zppmrRH8g-ve39TyrWYhBpZXrENDO6Y", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730493", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (2.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.5ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 40ms (Views: 3.9ms | ActiveRecord: 12.7ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:08:14 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (0.9ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 112ms (Views: 110.6ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:10:41 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEg1S3UIVIw_eGBO5J6IadJGMtDy1ZM-GOQCOsY4aXKdTJ9SLk0PAIXPH77_acLe5eNTg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI2NDJ9.5e_dN8HeHTPurOto5Qj0ueSaj2CNmpLtgQIH_OrcgP8", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730642", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.4ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:10:42 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.5ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 70ms (Views: 68.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:12:06 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEnWUWv7HYxfwdwGQTRYmweCO6JGCx1foveZbPlcE0_1ZeFpA7DyFILLaph3IpQSPy5WA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI3Mjd9.c_dU6h3fhdKCXFQ5FmIf6Ticx2dt58A7kaqgLVtFJ8c", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730727", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:12:06 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.4ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 87ms (Views: 84.9ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:14:47 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGeepnYtAgqnJ740ME2QKGJfUUSprsrizmKpie8Pev1UipnLVMOcnfTk3Tvy4CuC7E6pw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI4ODh9.OFdpIvr31g_Lm7ziSw2NMjyKDbRIGlU-3HQdgEd4y3w", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730888", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:14:47 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.9ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 73ms (Views: 71.1ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:15:18 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEUW2IRHH8yKUQyUvjgcC78DF62XgGqmGaJb43rVB5XqV_XWl-3sPyh32aVePbDRIHb5w", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI5MTl9.zPpzWYleGBZJWjzrpgNF2kJjW-ABaDnF6HmYsWGUFcQ", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730919", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:15:22 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.1ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 68ms (Views: 66.2ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:15:30 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFRku3yAE-8RejluxQcp8j_Sh9a9m5F5wlxcxDYu2BYv5aeG7wrjQfddDm9dPzjaha29w", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI5MzF9.whgBL1ITwZ2RMVLfWvo1sxCdvF7qC0c93abDEeGc7p8", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730931", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:15:31 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.2ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 84ms (Views: 82.4ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:16:01 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGR7VZSC1cvBw8rA-i8DkFmbuil5XIPt7oYxkNNlgojnFPYjzTraPKoduUp-HfI5e2R0Q", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI5NjF9.LjsfZdzNjEav7BO31RhGpj96WafY8yFLs3-5Ea_IJng", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730961", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:16:03 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 73ms (Views: 71.4ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:16:12 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFZDEuuMFexY49aNjJUmVwwYYHvEs6cIlDonE-GfboYnzPyspZCqWF9rwuOvmkP6RXWKg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjI5NzJ9._KMr5t0z3K3vVXIcABTsQt2PEet99-ie-ZvEW_qI6yw", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502730972", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:16:12 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.0ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 79ms (Views: 77.7ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:16:51 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gHOzwjoojZdOhtI4HUW8AHhTbTR_sEJ8HIcQz8Z-HuGZLdVu5VPTXIWjpAmBZvmbakpKw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjMwMTJ9.POYmfBqTt7gBmBhMggtySbmuSpTkqhjgE-Ft5eRtv3U", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731012", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:16:52 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 114ms (Views: 112.5ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:20:39 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGe4WtcGygtu3TL_CVEZMVALk-fYxP2EuUhL1PG2vKgtDkd6u8pnJ55diLiKZv2XQeYfg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjMyNDB9.OYaQVQvvxojUsb7ePTBznYtPwK17UJNHfRq5zGPn66E", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731240", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:20:40 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.9ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 136ms (Views: 133.9ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:21:36 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEnslBXhiK_a8wbjrAhqgw41SV6ux2mLot9KenK9ZXWssropN4lHMqz5vP-7odZnW0srQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjMyOTd9._5Ii238YbXsn5lwsG8U0oemVT6oIn79dI_VWnfusick", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731297", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:21:37 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 79ms (Views: 77.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:22:11 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEnMhYuUnL75eBHCZUFgNn6UpRMSiC6rVKzB7SQnOrthZ7YNrvl4LxXSh9AGCOq8gZMoQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjMzMzJ9.RJwCN4oxLcV66Fid8zswbXUFzpikUIbWeS8m_8GSsWo", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731332", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:22:11 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (0.9ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 74ms (Views: 72.5ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:22:38 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGAEhKqswXyWoL_c3DxV_bwkYn8VBzJEBbR8BRR5fuR37Zyu9_3YSdyyYT_-oDg07EbEQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjMzNTl9.mkQn-4GLlHoFT3SK8-r7nQscGjuOTpGQ87Aqv6eDgV4", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731359", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:22:39 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.6ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 80ms (Views: 77.2ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:25:22 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEWW_E2IU7AOa8EP6LAIabgVmXI5pqTIlEy0Hu9CBUP-QtfLTOExOFJi4sStih5PYVWLg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM1MjN9.sU2COwAZ6ivspakWC4-omsrixdVsDZJG2ZLtaBRdO6I", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731523", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:25:23 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.1ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 109ms (Views: 107.5ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:25:48 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEMn8upElTkw_J2pDqPt4YoE69uvtnYhXi9on-3tt9XKKs3jHrU_9e_Vyc5m3f4QTjCAg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM1NDh9.bsnQGz0Gl5m5NAq3fiOiros6j56cSaj1yzld8m6bUuU", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731548", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:25:48 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.6ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 104ms (Views: 101.9ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:26:37 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEG-JNMystPRL6Jllg_R-DAVw1ZdpGk04TRBZJ_sLBcj-hpYMzP835pFnbXAvGoZFILAQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM1OTd9.veRuNfPquTOFTxgYnndk5SR2NoKhM1Z1Q9z0fgDDx2s", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731597", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:26:39 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (0.9ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 92ms (Views: 91.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:26:57 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.7ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 96ms (Views: 94.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:27:14 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.3ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 98ms (Views: 96.1ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:28:13 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gF2MdWOOPx7BXqmYW-9scjgZMUFNegNu7GzOJhWJs3HMCda0jr95pbGy3_lllCNcZrBpA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM2OTR9.zMU_dnB3njtXNdY2X9f91IJk8ZFLvUHdqgs6QRZc6KY", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731694", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:28:13 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.0ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 73ms (Views: 72.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:28:45 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGGLXW3nQgYXKqCL68TsprsPrPfbnFr4sIcg_egbZonx3RiKmthpS91wX4XfXbdqKHC-w", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM3MjZ9.C9Cxla0gMbDzv_o7h1f7C5KBKC9Cm2v8qSk7W_4Y4So", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731726", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:28:49 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.5ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 100ms (Views: 98.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:29:18 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 85ms (Views: 83.8ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:30:24 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEEgid5u25wVuu6-Cj6WVJzp9Gjhx5jbCTJMCNvQ8AkgoWdwL5MltJZlFIPeqMk51B7NA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM4MjR9.izFdMer0sjOPCxlkd5cZMQCwZT-Pg92UlryUBzR3t_c", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731824", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 7ms (Views: 1.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:30:27 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.3ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 76ms (Views: 74.0ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:30:34 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gHl76RwSlvv48lQzn40a618NausxHBYe9hMvrzFPW32YTxTmNtmuqfwzgl3Jfj_kz-Otw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM4MzV9.K-PX4cA9JHDUZflzOVxntVl8KABoUknj7FfVJkgijeU", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731835", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:30:36 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.7ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 65ms (Views: 62.4ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:31:13 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFhSfc0EIrWnOApsMMZJq55aLidLH7e2aSsnbxVPo1rYLeIJhv413WKnhUqE_OtY_VN4Q", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM4NzR9.ADbPSLU8ks4BMsEReoyqOzjtFlDqpGiJxHn6NkYe1w4", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731874", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:31:17 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.4ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 75ms (Views: 73.0ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:31:26 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEPI-UymwQ11iUnyUTQgsPnfaBI51dS2EKgUUeMaHmQOTZ-IviF7uh8h9fjwgFljyW5Dw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjM4ODd9.OqXHUy4cKm5_RnxytZzYYfTmdm0bj-fSQuOuRLOXLCY", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502731887", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:31:38 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.7ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 89ms (Views: 87.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:31:55 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.8ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 78ms (Views: 75.6ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:33:21 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEZHkIJeG5nMpdVTtGF-awAHAVjRfVxiwd3h_LIc9MJRd9ni9aHFfREGFG004RUFm9ROw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjQwMDJ9._4iC42Y8euBmKpCUQlU-uryIa9zNroHSIth2SFyOjR0", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502732002", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:33:22 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.1ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 67ms (Views: 66.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:33:33 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.4ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 80ms (Views: 78.7ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:36:08 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gF1hKwgdM6A-V9qurUvG26e-m3CsQ2ExYrBMzsAt2BSRAh3aZjBktDDkrU56wN_JRzKAQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjQxNjl9.6Yu6zVgrz4XOavgMlEs31wbGPJTN6JPwJWbsZ_AbyFw", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502732169", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:36:08 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (0.9ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 81ms (Views: 79.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:36:24 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.8ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 69ms (Views: 67.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:36:41 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 77ms (Views: 75.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:36:53 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.8ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 82ms (Views: 80.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:37:06 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 65ms (Views: 63.6ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:38:16 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gE8_LBo3DAFqysc3K8yEOZqdumxnre7Rn9VsCSCHWCF88LOy4QMdDYaJSUuByvp04moRw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjQyOTd9.3u7AXBftWQlQybEVDJjK2tJUA7YW1RSzVpPvmX68PYE", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502732297", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:38:17 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.4ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 91ms (Views: 89.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:38:29 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.1ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 98ms (Views: 96.5ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:41:35 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gH0aqgR5TmsmO2D7fUU4vjKo0LCp-i4ocnfw_fBLaR4mjtlp_qq1GGzgr-gmA605_xUJQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjQ0OTZ9.o4TFatj5fvd2u2IIpqLL2oV1AUgItnyGP9tXPxjvlSs", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502732496", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:41:35 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.7ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 115ms (Views: 113.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:41:49 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (0.9ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 111ms (Views: 109.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:41:58 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.0ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 107ms (Views: 105.9ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:53:09 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGwa46jYXM9rO9amHv2w_I26Vr7Z5NDIlT1u20l6CriI04R-41voPf0Ajj03JibQO10EA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjUxODl9.RbK3IFu4d7ZDpaQP_YbEgYX3UN1dLc1CqTV42Tw2alc", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502733189", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.4ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 5ms (Views: 1.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:53:09 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 97ms (Views: 95.9ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 10:57:49 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gHlybx0zRX924t973WrGzgJAfEdCye8v49p-FVBhQVNbWUUpN_qfpiShg12HH9u0T9Szg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjU0Njl9.Nvcm3RjUjSUfn9rzkOVembc8UaimpwvDtJ3YDVIwtjI", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502733469", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 10:57:49 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (0.9ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 89ms (Views: 87.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:00:18 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gHDcB2c8yW7QQqlWoXZE0YvMf08eUgQs-2TUdcjxb1cT6MKbtA6in76PsD8woj3pGQkvg", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjU2MTh9.bo0WRPem_RRCACKCgpl8bwObNKdS0HuRLE3vbFKuuR4", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502733618", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:00:19 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 75ms (Views: 72.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:02:53 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFZnHgJjz0pTB4jDoSPEAMGM-tVsr-IJlDbZnjybiWC9cKL1VBk6TJYE6oJWdjm-mgUUQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjU3NzN9.dABhl1XIMHUqaW1Mfsjv9pjGnCkUbLYW76j1sPE0XRM", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502733773", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 20ms (Views: 2.2ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:02:54 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (0.8ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 98ms (Views: 96.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:04:17 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFynHR9vkNsNBPrhPGYFpyiKCSwhzL0Sal8CXyPbWGdr2qDSzGnGXe8VLMWnNQ7DJG6rQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjU4NTZ9.Lfj1J2K80kBWBw9A4vaXJ2c6KwJMeUS0gZbOEQ_WnUI", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502733856", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:04:17 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 108ms (Views: 106.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:04:22 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.4ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", 137], ["updated_at", "2015-08-25 18:04:22.858039"], ["id", 1]]
+  [1m[35m (66.1ms)[0m  COMMIT
+Completed 200 OK in 74ms (Views: 1.0ms | ActiveRecord: 67.3ms)
+
+
+Started OPTIONS "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:04:25 -0700
+Processing by ApplicationController#preflight as */*
+  Parameters: {"all"=>"api/users/1/skateparks/137"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:04:25 -0700
+Processing by UsersController#leave_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", nil], ["updated_at", "2015-08-25 18:04:25.233439"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Completed 200 OK in 3ms (ActiveRecord: 1.1ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:04:26 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 137]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["current_park", 137], ["updated_at", "2015-08-25 18:04:26.132306"], ["id", 1]]
+  [1m[36m (6.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 11ms (Views: 0.6ms | ActiveRecord: 6.8ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:07:18 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFiZGZ5a4Y4NI1Q_TAReNuxQyrSpyoz42Hi3WSI_tvEeFvo_MrV6TrPtrVZwpQ3tSDwXA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjYwMzh9.AdGKnV7rRt3Z5gIGCynJwcxUtCLZC4giwCRk-fbA-zs", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502734038", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:07:19 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (3.1ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 77ms (Views: 73.7ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:07:22 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 137]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:19:54 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gEvBz77Dey-GImxdJu0A6dA8AKi5iG1our9ZTXeXrhAXNhQdypojvrF__BZgY9N8KMYtQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjY3OTV9.pDcJSPaUduj20iFNQM1Nnzc3i6mIqLCbN4CKaBCx5Xw", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502734795", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:19:54 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 88ms (Views: 85.9ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:19:58 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.1ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:22:07 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gFvlRaiQnCsDNhq4x5ZmxdIDO4RsgR5tLqeqBhofNjUxMT2LZGIuIZECS1hIbDRhEvQJA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjY5Mjh9.QSIxFRERlqlmP4XuR0j8zAd2R5Sa4d5XhKhOZj95yMs", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502734928", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.4ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:22:08 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.3ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 72ms (Views: 70.8ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:22:11 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.1ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 137]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:22:29 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gH3LCdVLHxwdMf1Po0RiSu6RH9NQTsARvol4M-wbj_d1xwgQAAz9KpZyQPSeBdP1qH6fA", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjY5NDl9.ozozkQwX_IFcrWG10biwdfqy32s1nfHfEPAVVpS3BXs", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502734949", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:22:29 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.4ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 88ms (Views: 86.4ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:22:39 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gF9F3_sY8gG_Jo3r0uCBWy-gyic2LVA1uB7Fi-gd9q_hwEskjY963QiAIZkaQ-y8Er7mw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjY5NjB9.o0skcmBmRMtvQFBZVK7DGiv1OeQFBIQstadbRLitYsI", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502734960", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.3ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:22:40 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (0.9ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 99ms (Views: 97.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:22:43 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.1ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 137]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:25:42 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGgYymQmdd2bGWaBO1AWGnVzOrXY4CJf5DhrJuzEblDgi0pAtSMepIwvDz_GrR67W1cjQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjcxNDN9.3OeLyDYG8xr-2LEwXeZeR8yaJVTB-1ljryCQeuYggF0", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502735143", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:25:43 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (0.9ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 88ms (Views: 87.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:25:45 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.1ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:26:16 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGyod6QYiION5D9me_ltLaBikd2aspQwVwUFFDLRFM8zp4aibC9UHJ4p1Zv47zXNeA9iw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjcxNzd9.8vsIPNX6bvbODbJ9dY27eQXIIYiAvrz2TOFyA75zH_c", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502735177", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:26:17 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.6ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 111ms (Views: 109.1ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:26:21 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSkatepark Load (0.1ms)[0m  SELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1  [["id", 137]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:28:56 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gGiJCOecGiMR7Ua6kfJ2-h5UGVqDV3_RLMxgeEOlku0YgCZhbxKtWhzdInEOsYMPU2dig", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MjczMzd9.RDGjPKLTuwVmHyfJOJ4Rs4NaYfaflgKkr1WYW-ypUPA", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502735337", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:28:56 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (0.8ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 94ms (Views: 92.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:29:01 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.1ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started OPTIONS "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:29:02 -0700
+Processing by ApplicationController#preflight as */*
+  Parameters: {"all"=>"api/users/1/skateparks/137"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 0ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:29:02 -0700
+Processing by UsersController#leave_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["current_park", nil], ["updated_at", "2015-08-25 18:29:02.383274"], ["id", 1]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 2ms (ActiveRecord: 0.7ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:29:04 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.1ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", 137], ["updated_at", "2015-08-25 18:29:04.350646"], ["id", 1]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 11:29:08 -0700
+Processing by UsersController#leave_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", nil], ["updated_at", "2015-08-25 18:29:08.873581"], ["id", 1]]
+  [1m[35m (1.1ms)[0m  COMMIT
+Completed 200 OK in 4ms (ActiveRecord: 1.5ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 11:35:31 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gHlp3StifPy6oPUvHJpcK5Acl6lqjsL-EeR2rBhgAcCh1PhxHf4ctPRecgBjA-_sIXHcw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1Mjc3MzJ9.gob4AEjkxwmoUdGfNC-mvvJ465w_ETjkPQoMGWSx7_c", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502735732", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.3ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 11:35:32 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.5ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 106ms (Views: 103.8ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 12:14:39 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gH1QNj78EFhivCKOEMwAJsAx_8GTwdvzzltsKxiz75kiLEfJdOJepUoBXZeE14wep8CHw", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MzAwNzl9.kyqKt9Pap-Wh-5-ff_xuq03khxHeqy9WDJfhJTydf5I", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502738079", "id"=>"100731061466734742350"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["uid", "100731061466734742350"]]
+  [1m[36mSkatepark Load (0.2ms)[0m  [1mSELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 12:14:40 -0700
+Processing by SkateparksController#index as HTML
+  [1m[35mSkatepark Load (1.0ms)[0m  SELECT "skateparks".* FROM "skateparks"
+Completed 200 OK in 106ms (Views: 105.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/api/users/100731061466734742350/authenticate" for 127.0.0.1 at 2015-08-25 12:14:54 -0700
+Processing by UsersController#authenticate as HTML
+  Parameters: {"uid"=>"google:100731061466734742350", "provider"=>"google", "google"=>{"id"=>"100731061466734742350", "accessToken"=>"ya29.2gHE4lwsK_7TkWx-QXp-gGzIU8PuwPbMMclFfUDw163iuEJq6L9QxSQxwYB57q-0UV81HQ", "displayName"=>"Chris Scott", "cachedUserProfile"=>{"id"=>"100731061466734742350", "name"=>"Chris Scott", "given_name"=>"Chris", "family_name"=>"Scott", "link"=>"https://plus.google.com/100731061466734742350", "picture"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg", "gender"=>"male", "locale"=>"en"}, "profileImageURL"=>"https://lh3.googleusercontent.com/-_ok6S4teVfM/AAAAAAAAAAI/AAAAAAAAAmA/VPtPS0Uf5l0/photo.jpg"}, "token"=>"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6Imdvb2dsZToxMDA3MzEwNjE0NjY3MzQ3NDIzNTAiLCJwcm92aWRlciI6Imdvb2dsZSJ9LCJpYXQiOjE0NDA1MzAwOTV9.txx1U3yNj8Ljd2kDIQhqdPlsx5edLKXbXO2TUxNhxL4", "auth"=>{"uid"=>"google:100731061466734742350", "provider"=>"google"}, "expires"=>"1502738095", "id"=>"100731061466734742350"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."uid" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["uid", "100731061466734742350"]]
+  [1m[35mSkatepark Load (0.2ms)[0m  SELECT "skateparks".* FROM "skateparks" INNER JOIN "favorites" ON "skateparks"."id" = "favorites"."skatepark_id" WHERE "favorites"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/skateparks" for 127.0.0.1 at 2015-08-25 12:14:55 -0700
+Processing by SkateparksController#index as HTML
+  [1m[36mSkatepark Load (1.1ms)[0m  [1mSELECT "skateparks".* FROM "skateparks"[0m
+Completed 200 OK in 90ms (Views: 88.2ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 12:15:07 -0700
+Processing by UsersController#attend_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSkatepark Load (0.3ms)[0m  [1mSELECT  "skateparks".* FROM "skateparks" WHERE "skateparks"."id" = $1 LIMIT 1[0m  [["id", 137]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", 137], ["updated_at", "2015-08-25 19:15:07.081800"], ["id", 1]]
+  [1m[35m (0.9ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 1.9ms)
+
+
+Started OPTIONS "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 12:15:07 -0700
+Processing by ApplicationController#preflight as */*
+  Parameters: {"all"=>"api/users/1/skateparks/137"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 0ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/api/users/1/skateparks/137" for 127.0.0.1 at 2015-08-25 12:15:07 -0700
+Processing by UsersController#leave_park as */*
+  Parameters: {"id"=>"1", "skatepark_id"=>"137"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "current_park" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["current_park", nil], ["updated_at", "2015-08-25 19:15:07.886149"], ["id", 1]]
+  [1m[35m (0.9ms)[0m  COMMIT
+Completed 200 OK in 3ms (ActiveRecord: 1.2ms)
