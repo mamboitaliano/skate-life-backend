@@ -31,13 +31,8 @@ class UsersController < ApplicationController
 
   def authenticate
     @user = User.where(uid: params[:google][:id]).first
-
-    p '*' * 100
-    p @user
-    p '*' * 100
-    
     if @user
-      render json: @user
+      render json: {user: @user, skateparks: @user.skateparks}
     else
       save_user
     end
@@ -49,11 +44,14 @@ class UsersController < ApplicationController
 
     @user.update_attributes(current_park: @skatepark.id)
     # render nothing: true
+    p '*' * 100
+    p @user
+    p '*' * 100
+    
     render json: @skatepark
   end
 
   def leave_park
-    # FUQBOI
     @user = User.find(params[:id]).update_attributes(current_park: nil)
   end
 
@@ -69,7 +67,7 @@ class UsersController < ApplicationController
         name: params[:google][:displayName])
 
       if @new_user.save
-        render json: @new_user
+        render json: {user: @new_user, skateparks: @new_user.skateparks}
       else
         render json: {error: 'something went wrong with user'}
       end
