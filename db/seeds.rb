@@ -1,31 +1,45 @@
 require 'csv'
 require 'geokit'
 
+def format_address(address)
+  split = address.split(' ')
+  formatted = split.map do |word|
+    if word.match(/\A[a-z]{2}\z/) && !word.match(/st|rd|dr/)
+      word.upcase
+    else
+      word.capitalize
+    end
+  end
+  formatted.join(' ')
+end
+
+def format_coords(address)
+  lat_lon = Geokit::Geocoders::GoogleGeocoder.geocode(address)
+
+  coords = {}
+  coords[:lat] = lat_lon.to_s.match(/Latitude: (.\d+\.\d+)/)[1]
+  coords[:lon] = lat_lon.to_s.match(/Longitude: (.\d+\.\d+)/)[1]
+  coords
+end
+
+
 CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do |row|
   park_params = Hash[row]
 
   if park_params[:address]
-    sleep(0.2)
-    lat_long = Geokit::Geocoders::GoogleGeocoder.geocode(park_params[:address]) if park_params[:address]
-    lat = lat_long.to_s.match(/Latitude: (.\d+\.\d+)/)[1]
-    long = lat_long.to_s.match(/Longitude: (.\d+\.\d+)/)[1]
+    name = (park_params[:name] ? park_params[:name] : park_params[:city])
+    coords = format_coords(park_params[:address])
 
-    if park_params[:name]
-      Skatepark.create(
-        name: park_params[:name],
-        address: park_params[:address],
-        lat: lat,
-        lon: long)
-    else
-      Skatepark.create(
-        name: park_params[:city],
-        address: park_params[:address],
-        lat: lat,
-        lon: long)
-    end
+    p Skatepark.create(
+      name: format_address(name),
+      address: format_address(park_params[:address]),
+      lat: coords[:lat],
+      lon: coords[:lon])
   end
 
 end
+
+
 
 
 
