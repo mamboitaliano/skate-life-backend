@@ -37,6 +37,7 @@ CSV.foreach('db/skateparks.csv', headers: true, header_converters: :symbol, ) do
       lon: coords[:lon])
   end
 
+  sleep(0.2)
 end
 
 
